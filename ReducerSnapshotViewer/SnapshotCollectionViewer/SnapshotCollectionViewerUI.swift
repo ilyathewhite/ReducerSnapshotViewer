@@ -73,21 +73,25 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
                 Button(action: { store.send(.mutating(.moveToFirst, animated: true, stepAnimation)) }) {
                     Image(systemName: "arrow.left.to.line.circle")
                 }
+                .keyboardShortcut(.leftArrow, modifiers: .command)
                 .disabled(store.state.isAtStart)
 
                 Button(action: { store.send(.mutating(.moveBackward, animated: true, stepAnimation)) }) {
                     Image(systemName: "arrow.left.circle")
                 }
+                .keyboardShortcut(.leftArrow, modifiers: [])
                 .disabled(store.state.isAtStart)
 
                 Button(action: { store.send(.mutating(.moveForward, animated: true, stepAnimation)) }) {
                     Image(systemName: "arrow.right.circle")
                 }
+                .keyboardShortcut(.rightArrow, modifiers: [])
                 .disabled(store.state.isAtEnd)
                 
                 Button(action: { store.send(.mutating(.moveToLast, animated: true, stepAnimation)) }) {
                     Image(systemName: "arrow.right.to.line.circle")
                 }
+                .keyboardShortcut(.rightArrow, modifiers: .command)
                 .disabled(store.state.isAtEnd)
             }
             .padding(10)
