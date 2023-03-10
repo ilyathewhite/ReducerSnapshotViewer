@@ -44,6 +44,7 @@ struct FitCodeStringWidth: ViewModifier {
                 .measureWidth(WidthKey.self, save: { idealWidth = $0 })
                 .hidden()
         }
+        .lineSpacing(3)
         .frame(minWidth: fixedWidth ? nil : idealWidth)
         .frame(width: fixedWidth ? idealWidth : nil)
     }
