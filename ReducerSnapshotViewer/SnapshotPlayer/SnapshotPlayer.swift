@@ -148,7 +148,7 @@ extension SnapshotPlayer {
                         state.iterator.index -= 1
                         state.iterator.snapshotStep = .output
                     }
-                    return .action(.effect(.updateSnapshot(state.snapshotState, resetUpdateStatus: false)))
+                    return .action(.effect(.updateSnapshot(state.snapshotState, resetUpdateStatus: true)))
                     
                 case .moveToFirst:
                     state.iterator = .init()

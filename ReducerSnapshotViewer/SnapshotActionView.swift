@@ -21,8 +21,8 @@ struct SnapshotActionView: View {
         ScrollView {
             Text(action)
                 .font(font)
+                .fitCodeString(fixedWidth: false)
                 .padding(.vertical)
-                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
     
@@ -52,6 +52,9 @@ struct SnapshotActionView: View {
             actionText(action: action, font: font)
             Spacer()
             arrow(mode: mode)
+                .measurement(FixedWidthKey.self) { proxy in
+                    proxy.size.width + 2 * padding
+                }
         }
         .padding(.horizontal, padding)
     }

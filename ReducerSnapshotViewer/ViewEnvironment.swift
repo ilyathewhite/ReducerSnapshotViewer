@@ -10,7 +10,7 @@ import SwiftUIEx
 import FoundationEx
 
 private struct CodingFontKey: EnvironmentKey {
-    static let defaultValue: Font = .system(size: 14).monospaced()
+    static let defaultValue: Font = .system(size: 12).monospaced()
 }
 
 extension EnvironmentValues {
@@ -24,13 +24,15 @@ struct FitCodeStringWidth: ViewModifier {
     @Environment(\.codingFont) var codingFont
     @State private var idealWidth: CGFloat?
     let charCount: Int
+    let fixedWidth: Bool
     
     enum Tag {}
     typealias WidthKey = FirstMeasurementKey<CGFloat, Tag>
     @State private var bottomStackHeight: CGFloat?
     
-    init(charCount: Int) {
+    init(charCount: Int, fixedWidth: Bool) {
         self.charCount = charCount
+        self.fixedWidth = fixedWidth
     }
     
     func body(content: Content) -> some View {
@@ -42,12 +44,13 @@ struct FitCodeStringWidth: ViewModifier {
                 .measureWidth(WidthKey.self, save: { idealWidth = $0 })
                 .hidden()
         }
-        .frame(width: idealWidth)
+        .frame(minWidth: fixedWidth ? nil : idealWidth)
+        .frame(width: fixedWidth ? idealWidth : nil)
     }
 }
 
 extension View {
-    func fitCodeString(charCount: Int = codeStringDefaultMaxWidth) -> some View {
-        modifier(FitCodeStringWidth(charCount: charCount))
+    func fitCodeString(charCount: Int = codeStringDefaultMaxWidth, fixedWidth: Bool) -> some View {
+        modifier(FitCodeStringWidth(charCount: charCount, fixedWidth: fixedWidth))
     }
 }

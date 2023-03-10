@@ -8,6 +8,7 @@
 import Foundation
 
 import SwiftUI
+import SwiftUIEx
 import FoundationEx
 import ReducerArchitecture
 
@@ -17,6 +18,9 @@ extension SnapshotState: StoreUIWrapper {
         
         typealias StoreWrapper = SnapshotState
         @ObservedObject var store: Store
+        
+        @State private var fixedWidth: CGFloat?
+        private let propertyNamePadding: CGFloat = 10
         
         init(store: Store) {
             self.store = store
@@ -28,9 +32,12 @@ extension SnapshotState: StoreUIWrapper {
                     ForEach(store.state.rows) { row in
                         GridRow {
                             HStack(spacing: 0) {
+                                Spacer()
+                                    .frame(width: 15)
+                                
                                 Circle()
                                     .fill(row.isUpdated ? .blue : .clear)
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: 15, height: 15)
                                     .frame(alignment: .center)
                                 
                                 Button(action: {
@@ -44,20 +51,29 @@ extension SnapshotState: StoreUIWrapper {
                                 }
                                 
                                 Text(row.property)
+                                    .padding(.vertical, propertyNamePadding)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .font(codingFont)
                                     .foregroundColor(.secondary)
-                                    .fitCodeString(charCount: 25)
+                                    .fitCodeString(charCount: 25, fixedWidth: true)
                             }
-                            
+                            .measurement(FixedWidthKey.self) { proxy in
+                                proxy.size.width
+                            }
+                            .onPreferenceChange(FixedWidthKey.self) {
+                                fixedWidth = $0
+                            }
+                            .frame(width: fixedWidth)
+
                             Text(row.value)
+                                .padding(.vertical, propertyNamePadding)
                                 .lineLimit(row.isExpanded ? nil : 1)
                                 .fixedSize(horizontal: false, vertical: true)
                                 .font(codingFont)
-                                .fitCodeString()
+                                .fitCodeString(fixedWidth: false)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         Divider()
-                            .gridCellUnsizedAxes(.horizontal)
                     }
                 }
                 .buttonStyle(.borderless)
@@ -142,9 +158,11 @@ struct SnapshotState_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             SnapshotState.ContentView(store: store)
+                .frame(width: 900)
             Button("Update") {
                 store.send(.mutating(.update(state2, resetUpdateStatus: false), animated: true, .easeInOut(duration: 0.2)))
             }
+            .padding()
             .buttonStyle(.borderless)
         }
     }

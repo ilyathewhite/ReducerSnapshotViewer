@@ -11,10 +11,27 @@ import SwiftUI
 import SwiftUIEx
 import ReducerArchitecture
 
+enum FixedWidthTag {}
+typealias FixedWidthKey = FirstMeasurementKey<CGFloat, FixedWidthTag>
+
 extension SnapshotPlayer: StoreUIWrapper {
     struct ContentView: StoreContentView {
         typealias StoreWrapper = SnapshotPlayer
         @ObservedObject var store: Store
+        
+        init(store: Store) {
+            self.store = store
+        }
+        
+        @Environment(\.colorScheme) var colorScheme
+        var backgroundColor: Color {
+            switch colorScheme {
+            case .dark:
+                return .black
+            default:
+                return .white
+            }
+        }
         
         @StateObject private var snapshotStateStore = SnapshotState.store(state: [])
         
@@ -38,16 +55,16 @@ extension SnapshotPlayer: StoreUIWrapper {
             return SnapshotActionView(action: action, mode: mode)
         }
         
-        enum SnapshotWidthTag {}
-        typealias SnapshotWidthKey = FirstMeasurementKey<CGFloat, SnapshotWidthTag>
-        @State private var snapshotWidth: CGFloat?
+        @State private var actionViewFixedWidth: CGFloat?
+        @State private var snapshotStateViewFixedWidth: CGFloat?
         
-        var snapshotStateView: some View {
-            HStack {
-                Divider()
-                SnapshotState.ContentView(store: snapshotStateStore)
-                Divider()
-            }
+        func widths(total w: CGFloat) -> (actionViewWidth: CGFloat?, snapshotStateViewWidth: CGFloat?) {
+            guard let d1 = actionViewFixedWidth else { return (nil, nil) }
+            guard let d2 = snapshotStateViewFixedWidth else { return (nil, nil) }
+            let x = floor((w - (d1 + d2)) / 2)
+            let w1 = x + d1
+            let w2 = w - w1
+            return (w1, w2)
         }
 
         @ViewBuilder
@@ -78,19 +95,24 @@ extension SnapshotPlayer: StoreUIWrapper {
         }
         
         var body: some View {
-            VStack {
+            VStack(spacing: 0) {
                 GeometryReader { proxy in
-                    Grid(horizontalSpacing: 0) {
-                        GridRow {
-                            actionView
-                                .frame(width: snapshotWidth.map { proxy.size.width - $0 } )
-                            snapshotStateView
-                                .measureWidth(SnapshotWidthKey.self) {
-                                    snapshotWidth = $0
-                                }
-                        }
+                    HStack(spacing: 0) {
+                        let (actionViewWidth, snapshotStateViewWidth) = widths(total: proxy.size.width)
+                        actionView
+                            .onPreferenceChange(FixedWidthKey.self) {
+                                actionViewFixedWidth = $0
+                            }
+                            .frame(width: actionViewWidth)
+                        
+                        Divider()
+                        
+                        SnapshotState.ContentView(store: snapshotStateStore)
+                            .onPreferenceChange(FixedWidthKey.self) {
+                                snapshotStateViewFixedWidth = $0
+                            }
+                            .frame(width: snapshotStateViewWidth)
                     }
-                    .frame(width: proxy.size.width)
                 }
                 Divider()
                 toolbar
@@ -105,6 +127,7 @@ extension SnapshotPlayer: StoreUIWrapper {
                 snapshotStateStore.send(.mutating(.update(store.state.snapshotState, resetUpdateStatus: true)))
             }
             .buttonStyle(.borderless)
+            .background(backgroundColor)
         }
     }
 }
