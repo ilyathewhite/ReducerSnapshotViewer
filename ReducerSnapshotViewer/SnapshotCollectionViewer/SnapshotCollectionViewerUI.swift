@@ -1,5 +1,5 @@
 //
-//  SnapshotPlayerUI.swift
+//  SnapshotCollectionViewerUI.swift
 //  ReducerSnapshotViewer
 //
 //  Created by Ilya Belenkiy on 3/8/23.
@@ -14,9 +14,9 @@ import ReducerArchitecture
 enum FixedWidthTag {}
 typealias FixedWidthKey = FirstMeasurementKey<CGFloat, FixedWidthTag>
 
-extension SnapshotPlayer: StoreUIWrapper {
+extension SnapshotCollectionViewer: StoreUIWrapper {
     struct ContentView: StoreContentView {
-        typealias StoreWrapper = SnapshotPlayer
+        typealias StoreWrapper = SnapshotCollectionViewer
         @ObservedObject var store: Store
         
         init(store: Store) {
@@ -138,9 +138,9 @@ struct SnapshotPlayer_Previews: PreviewProvider {
         return try! JSONDecoder().decode([ReducerSnapshotData].self, from: data)
     }()
     
-    static let store = SnapshotPlayer.store(snapshots: snapshots)
+    static let store = SnapshotCollectionViewer.store(snapshots: snapshots)
     
     static var previews: some View {
-        SnapshotPlayer.ContentView(store: store)
+        SnapshotCollectionViewer.ContentView(store: store)
     }
 }

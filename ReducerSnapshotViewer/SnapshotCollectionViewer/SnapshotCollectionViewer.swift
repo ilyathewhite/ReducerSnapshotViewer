@@ -1,5 +1,5 @@
 //
-//  SnapshotPlayer.swift
+//  SnapshotCollectionViewer.swift
 //  ReducerSnapshotViewer
 //
 //  Created by Ilya Belenkiy on 3/8/23.
@@ -9,7 +9,7 @@ import Foundation
 import FoundationEx
 import ReducerArchitecture
 
-enum SnapshotPlayer: StoreNamespace {
+enum SnapshotCollectionViewer: StoreNamespace {
     typealias PublishedValue = Void
     
     struct StoreEnvironment {
@@ -113,7 +113,7 @@ enum SnapshotPlayer: StoreNamespace {
     }
 }
 
-extension SnapshotPlayer {
+extension SnapshotCollectionViewer {
     @MainActor
     static func store(snapshots: [ReducerSnapshotData]) -> Store {
         Store(identifier, .init(snapshots: snapshots), reducer: reducer(), env: nil)

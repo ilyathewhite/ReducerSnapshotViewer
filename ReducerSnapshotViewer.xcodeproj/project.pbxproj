@@ -18,8 +18,8 @@
 		09B2DD6829B8FFA100C831B2 /* SnapshotState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD6729B8FFA100C831B2 /* SnapshotState.swift */; };
 		09B2DD6A29B8FFAB00C831B2 /* SnapshotStateUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD6929B8FFAB00C831B2 /* SnapshotStateUI.swift */; };
 		09B2DD7229B99A3300C831B2 /* SnapshotActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */; };
-		09B2DD7829B99E8900C831B2 /* SnapshotPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7729B99E8900C831B2 /* SnapshotPlayer.swift */; };
-		09B2DD7A29B99E9400C831B2 /* SnapshotPlayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7929B99E9400C831B2 /* SnapshotPlayerUI.swift */; };
+		09B2DD7829B99E8900C831B2 /* SnapshotCollectionViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7729B99E8900C831B2 /* SnapshotCollectionViewer.swift */; };
+		09B2DD7A29B99E9400C831B2 /* SnapshotCollectionViewerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7929B99E9400C831B2 /* SnapshotCollectionViewerUI.swift */; };
 		09B2DD7C29B9A59A00C831B2 /* ChordDiagramEditor.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */; };
 		09B2DD7E29BA167E00C831B2 /* ViewEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */; };
 		09B2DD8129BA1E9A00C831B2 /* SwiftUIEx in Frameworks */ = {isa = PBXBuildFile; productRef = 09B2DD8029BA1E9A00C831B2 /* SwiftUIEx */; };
@@ -59,8 +59,8 @@
 		09B2DD6F29B9019100C831B2 /* ReducerArchitecture */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ReducerArchitecture; path = ../Packages/ReducerArchitecture; sourceTree = "<group>"; };
 		09B2DD7029B9050000C831B2 /* FoundationEx */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FoundationEx; path = ../Packages/FoundationEx; sourceTree = "<group>"; };
 		09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotActionView.swift; sourceTree = "<group>"; };
-		09B2DD7729B99E8900C831B2 /* SnapshotPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotPlayer.swift; sourceTree = "<group>"; };
-		09B2DD7929B99E9400C831B2 /* SnapshotPlayerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotPlayerUI.swift; sourceTree = "<group>"; };
+		09B2DD7729B99E8900C831B2 /* SnapshotCollectionViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionViewer.swift; sourceTree = "<group>"; };
+		09B2DD7929B99E9400C831B2 /* SnapshotCollectionViewerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionViewerUI.swift; sourceTree = "<group>"; };
 		09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ChordDiagramEditor.json; sourceTree = "<group>"; };
 		09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnvironment.swift; sourceTree = "<group>"; };
 		09B2DD8229BA1ED200C831B2 /* SwiftUIEx */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftUIEx; path = ../Packages/SwiftUIEx; sourceTree = "<group>"; };
@@ -119,14 +119,14 @@
 		09B2DD3729B8FEDE00C831B2 /* ReducerSnapshotViewer */ = {
 			isa = PBXGroup;
 			children = (
-				09B2DD7629B99E4700C831B2 /* SnapshotPlayer */,
+				09B2DD7629B99E4700C831B2 /* SnapshotCollectionViewer */,
 				09B2DD6629B8FF6700C831B2 /* SnapshotState */,
 				09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */,
-				09B2DD3829B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift */,
 				09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */,
 				09B2DD3A29B8FEDE00C831B2 /* ContentView.swift */,
-				09B2DD3C29B8FEDF00C831B2 /* Assets.xcassets */,
+				09B2DD3829B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift */,
 				09B2DD4129B8FEDF00C831B2 /* ReducerSnapshotViewer.entitlements */,
+				09B2DD3C29B8FEDF00C831B2 /* Assets.xcassets */,
 				09B2DD3E29B8FEDF00C831B2 /* Preview Content */,
 			);
 			path = ReducerSnapshotViewer;
@@ -167,13 +167,13 @@
 			path = SnapshotState;
 			sourceTree = "<group>";
 		};
-		09B2DD7629B99E4700C831B2 /* SnapshotPlayer */ = {
+		09B2DD7629B99E4700C831B2 /* SnapshotCollectionViewer */ = {
 			isa = PBXGroup;
 			children = (
-				09B2DD7729B99E8900C831B2 /* SnapshotPlayer.swift */,
-				09B2DD7929B99E9400C831B2 /* SnapshotPlayerUI.swift */,
+				09B2DD7729B99E8900C831B2 /* SnapshotCollectionViewer.swift */,
+				09B2DD7929B99E9400C831B2 /* SnapshotCollectionViewerUI.swift */,
 			);
-			path = SnapshotPlayer;
+			path = SnapshotCollectionViewer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,8 +320,8 @@
 				09B2DD6829B8FFA100C831B2 /* SnapshotState.swift in Sources */,
 				09B2DD7229B99A3300C831B2 /* SnapshotActionView.swift in Sources */,
 				09B2DD3929B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift in Sources */,
-				09B2DD7A29B99E9400C831B2 /* SnapshotPlayerUI.swift in Sources */,
-				09B2DD7829B99E8900C831B2 /* SnapshotPlayer.swift in Sources */,
+				09B2DD7A29B99E9400C831B2 /* SnapshotCollectionViewerUI.swift in Sources */,
+				09B2DD7829B99E8900C831B2 /* SnapshotCollectionViewer.swift in Sources */,
 				09B2DD6A29B8FFAB00C831B2 /* SnapshotStateUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
