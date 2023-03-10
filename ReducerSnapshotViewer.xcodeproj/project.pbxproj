@@ -1,0 +1,683 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09B2DD3929B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD3829B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift */; };
+		09B2DD3B29B8FEDE00C831B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD3A29B8FEDE00C831B2 /* ContentView.swift */; };
+		09B2DD3D29B8FEDF00C831B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B2DD3C29B8FEDF00C831B2 /* Assets.xcassets */; };
+		09B2DD4029B8FEDF00C831B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B2DD3F29B8FEDF00C831B2 /* Preview Assets.xcassets */; };
+		09B2DD4B29B8FEDF00C831B2 /* ReducerSnapshotViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD4A29B8FEDF00C831B2 /* ReducerSnapshotViewerTests.swift */; };
+		09B2DD5529B8FEDF00C831B2 /* ReducerSnapshotViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD5429B8FEDF00C831B2 /* ReducerSnapshotViewerUITests.swift */; };
+		09B2DD5729B8FEDF00C831B2 /* ReducerSnapshotViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD5629B8FEDF00C831B2 /* ReducerSnapshotViewerUITestsLaunchTests.swift */; };
+		09B2DD6529B8FF4400C831B2 /* ReducerArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 09B2DD6429B8FF4400C831B2 /* ReducerArchitecture */; };
+		09B2DD6829B8FFA100C831B2 /* SnapshotState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD6729B8FFA100C831B2 /* SnapshotState.swift */; };
+		09B2DD6A29B8FFAB00C831B2 /* SnapshotStateUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD6929B8FFAB00C831B2 /* SnapshotStateUI.swift */; };
+		09B2DD7229B99A3300C831B2 /* SnapshotActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */; };
+		09B2DD7829B99E8900C831B2 /* SnapshotPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7729B99E8900C831B2 /* SnapshotPlayer.swift */; };
+		09B2DD7A29B99E9400C831B2 /* SnapshotPlayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7929B99E9400C831B2 /* SnapshotPlayerUI.swift */; };
+		09B2DD7C29B9A59A00C831B2 /* ChordDiagramEditor.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */; };
+		09B2DD7E29BA167E00C831B2 /* ViewEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */; };
+		09B2DD8129BA1E9A00C831B2 /* SwiftUIEx in Frameworks */ = {isa = PBXBuildFile; productRef = 09B2DD8029BA1E9A00C831B2 /* SwiftUIEx */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		09B2DD4729B8FEDF00C831B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09B2DD2D29B8FEDE00C831B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09B2DD3429B8FEDE00C831B2;
+			remoteInfo = ReducerSnapshotViewer;
+		};
+		09B2DD5129B8FEDF00C831B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09B2DD2D29B8FEDE00C831B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09B2DD3429B8FEDE00C831B2;
+			remoteInfo = ReducerSnapshotViewer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09B2DD3529B8FEDE00C831B2 /* ReducerSnapshotViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReducerSnapshotViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09B2DD3829B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerSnapshotViewerApp.swift; sourceTree = "<group>"; };
+		09B2DD3A29B8FEDE00C831B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		09B2DD3C29B8FEDF00C831B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		09B2DD3F29B8FEDF00C831B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		09B2DD4129B8FEDF00C831B2 /* ReducerSnapshotViewer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReducerSnapshotViewer.entitlements; sourceTree = "<group>"; };
+		09B2DD4629B8FEDF00C831B2 /* ReducerSnapshotViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReducerSnapshotViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09B2DD4A29B8FEDF00C831B2 /* ReducerSnapshotViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerSnapshotViewerTests.swift; sourceTree = "<group>"; };
+		09B2DD5029B8FEDF00C831B2 /* ReducerSnapshotViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReducerSnapshotViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09B2DD5429B8FEDF00C831B2 /* ReducerSnapshotViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerSnapshotViewerUITests.swift; sourceTree = "<group>"; };
+		09B2DD5629B8FEDF00C831B2 /* ReducerSnapshotViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerSnapshotViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		09B2DD6729B8FFA100C831B2 /* SnapshotState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotState.swift; sourceTree = "<group>"; };
+		09B2DD6929B8FFAB00C831B2 /* SnapshotStateUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotStateUI.swift; sourceTree = "<group>"; };
+		09B2DD6F29B9019100C831B2 /* ReducerArchitecture */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ReducerArchitecture; path = ../Packages/ReducerArchitecture; sourceTree = "<group>"; };
+		09B2DD7029B9050000C831B2 /* FoundationEx */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FoundationEx; path = ../Packages/FoundationEx; sourceTree = "<group>"; };
+		09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotActionView.swift; sourceTree = "<group>"; };
+		09B2DD7729B99E8900C831B2 /* SnapshotPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotPlayer.swift; sourceTree = "<group>"; };
+		09B2DD7929B99E9400C831B2 /* SnapshotPlayerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotPlayerUI.swift; sourceTree = "<group>"; };
+		09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ChordDiagramEditor.json; sourceTree = "<group>"; };
+		09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnvironment.swift; sourceTree = "<group>"; };
+		09B2DD8229BA1ED200C831B2 /* SwiftUIEx */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftUIEx; path = ../Packages/SwiftUIEx; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09B2DD3229B8FEDE00C831B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09B2DD6529B8FF4400C831B2 /* ReducerArchitecture in Frameworks */,
+				09B2DD8129BA1E9A00C831B2 /* SwiftUIEx in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09B2DD4329B8FEDF00C831B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09B2DD4D29B8FEDF00C831B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09B2DD2C29B8FEDE00C831B2 = {
+			isa = PBXGroup;
+			children = (
+				09B2DD8229BA1ED200C831B2 /* SwiftUIEx */,
+				09B2DD7029B9050000C831B2 /* FoundationEx */,
+				09B2DD6F29B9019100C831B2 /* ReducerArchitecture */,
+				09B2DD3729B8FEDE00C831B2 /* ReducerSnapshotViewer */,
+				09B2DD4929B8FEDF00C831B2 /* ReducerSnapshotViewerTests */,
+				09B2DD5329B8FEDF00C831B2 /* ReducerSnapshotViewerUITests */,
+				09B2DD3629B8FEDE00C831B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		09B2DD3629B8FEDE00C831B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09B2DD3529B8FEDE00C831B2 /* ReducerSnapshotViewer.app */,
+				09B2DD4629B8FEDF00C831B2 /* ReducerSnapshotViewerTests.xctest */,
+				09B2DD5029B8FEDF00C831B2 /* ReducerSnapshotViewerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09B2DD3729B8FEDE00C831B2 /* ReducerSnapshotViewer */ = {
+			isa = PBXGroup;
+			children = (
+				09B2DD7629B99E4700C831B2 /* SnapshotPlayer */,
+				09B2DD6629B8FF6700C831B2 /* SnapshotState */,
+				09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */,
+				09B2DD3829B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift */,
+				09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */,
+				09B2DD3A29B8FEDE00C831B2 /* ContentView.swift */,
+				09B2DD3C29B8FEDF00C831B2 /* Assets.xcassets */,
+				09B2DD4129B8FEDF00C831B2 /* ReducerSnapshotViewer.entitlements */,
+				09B2DD3E29B8FEDF00C831B2 /* Preview Content */,
+			);
+			path = ReducerSnapshotViewer;
+			sourceTree = "<group>";
+		};
+		09B2DD3E29B8FEDF00C831B2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */,
+				09B2DD3F29B8FEDF00C831B2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		09B2DD4929B8FEDF00C831B2 /* ReducerSnapshotViewerTests */ = {
+			isa = PBXGroup;
+			children = (
+				09B2DD4A29B8FEDF00C831B2 /* ReducerSnapshotViewerTests.swift */,
+			);
+			path = ReducerSnapshotViewerTests;
+			sourceTree = "<group>";
+		};
+		09B2DD5329B8FEDF00C831B2 /* ReducerSnapshotViewerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				09B2DD5429B8FEDF00C831B2 /* ReducerSnapshotViewerUITests.swift */,
+				09B2DD5629B8FEDF00C831B2 /* ReducerSnapshotViewerUITestsLaunchTests.swift */,
+			);
+			path = ReducerSnapshotViewerUITests;
+			sourceTree = "<group>";
+		};
+		09B2DD6629B8FF6700C831B2 /* SnapshotState */ = {
+			isa = PBXGroup;
+			children = (
+				09B2DD6729B8FFA100C831B2 /* SnapshotState.swift */,
+				09B2DD6929B8FFAB00C831B2 /* SnapshotStateUI.swift */,
+			);
+			path = SnapshotState;
+			sourceTree = "<group>";
+		};
+		09B2DD7629B99E4700C831B2 /* SnapshotPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				09B2DD7729B99E8900C831B2 /* SnapshotPlayer.swift */,
+				09B2DD7929B99E9400C831B2 /* SnapshotPlayerUI.swift */,
+			);
+			path = SnapshotPlayer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09B2DD3429B8FEDE00C831B2 /* ReducerSnapshotViewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09B2DD5A29B8FEDF00C831B2 /* Build configuration list for PBXNativeTarget "ReducerSnapshotViewer" */;
+			buildPhases = (
+				09B2DD3129B8FEDE00C831B2 /* Sources */,
+				09B2DD3229B8FEDE00C831B2 /* Frameworks */,
+				09B2DD3329B8FEDE00C831B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReducerSnapshotViewer;
+			packageProductDependencies = (
+				09B2DD6429B8FF4400C831B2 /* ReducerArchitecture */,
+				09B2DD8029BA1E9A00C831B2 /* SwiftUIEx */,
+			);
+			productName = ReducerSnapshotViewer;
+			productReference = 09B2DD3529B8FEDE00C831B2 /* ReducerSnapshotViewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		09B2DD4529B8FEDF00C831B2 /* ReducerSnapshotViewerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09B2DD5D29B8FEDF00C831B2 /* Build configuration list for PBXNativeTarget "ReducerSnapshotViewerTests" */;
+			buildPhases = (
+				09B2DD4229B8FEDF00C831B2 /* Sources */,
+				09B2DD4329B8FEDF00C831B2 /* Frameworks */,
+				09B2DD4429B8FEDF00C831B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09B2DD4829B8FEDF00C831B2 /* PBXTargetDependency */,
+			);
+			name = ReducerSnapshotViewerTests;
+			productName = ReducerSnapshotViewerTests;
+			productReference = 09B2DD4629B8FEDF00C831B2 /* ReducerSnapshotViewerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		09B2DD4F29B8FEDF00C831B2 /* ReducerSnapshotViewerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09B2DD6029B8FEDF00C831B2 /* Build configuration list for PBXNativeTarget "ReducerSnapshotViewerUITests" */;
+			buildPhases = (
+				09B2DD4C29B8FEDF00C831B2 /* Sources */,
+				09B2DD4D29B8FEDF00C831B2 /* Frameworks */,
+				09B2DD4E29B8FEDF00C831B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09B2DD5229B8FEDF00C831B2 /* PBXTargetDependency */,
+			);
+			name = ReducerSnapshotViewerUITests;
+			productName = ReducerSnapshotViewerUITests;
+			productReference = 09B2DD5029B8FEDF00C831B2 /* ReducerSnapshotViewerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09B2DD2D29B8FEDE00C831B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					09B2DD3429B8FEDE00C831B2 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					09B2DD4529B8FEDF00C831B2 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 09B2DD3429B8FEDE00C831B2;
+					};
+					09B2DD4F29B8FEDF00C831B2 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 09B2DD3429B8FEDE00C831B2;
+					};
+				};
+			};
+			buildConfigurationList = 09B2DD3029B8FEDE00C831B2 /* Build configuration list for PBXProject "ReducerSnapshotViewer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09B2DD2C29B8FEDE00C831B2;
+			packageReferences = (
+				09B2DD6329B8FF4400C831B2 /* XCRemoteSwiftPackageReference "ReducerArchitecture" */,
+				09B2DD7F29BA1E9A00C831B2 /* XCRemoteSwiftPackageReference "SwiftUIEx" */,
+			);
+			productRefGroup = 09B2DD3629B8FEDE00C831B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09B2DD3429B8FEDE00C831B2 /* ReducerSnapshotViewer */,
+				09B2DD4529B8FEDF00C831B2 /* ReducerSnapshotViewerTests */,
+				09B2DD4F29B8FEDF00C831B2 /* ReducerSnapshotViewerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09B2DD3329B8FEDE00C831B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09B2DD4029B8FEDF00C831B2 /* Preview Assets.xcassets in Resources */,
+				09B2DD3D29B8FEDF00C831B2 /* Assets.xcassets in Resources */,
+				09B2DD7C29B9A59A00C831B2 /* ChordDiagramEditor.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09B2DD4429B8FEDF00C831B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09B2DD4E29B8FEDF00C831B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09B2DD3129B8FEDE00C831B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09B2DD7E29BA167E00C831B2 /* ViewEnvironment.swift in Sources */,
+				09B2DD3B29B8FEDE00C831B2 /* ContentView.swift in Sources */,
+				09B2DD6829B8FFA100C831B2 /* SnapshotState.swift in Sources */,
+				09B2DD7229B99A3300C831B2 /* SnapshotActionView.swift in Sources */,
+				09B2DD3929B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift in Sources */,
+				09B2DD7A29B99E9400C831B2 /* SnapshotPlayerUI.swift in Sources */,
+				09B2DD7829B99E8900C831B2 /* SnapshotPlayer.swift in Sources */,
+				09B2DD6A29B8FFAB00C831B2 /* SnapshotStateUI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09B2DD4229B8FEDF00C831B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09B2DD4B29B8FEDF00C831B2 /* ReducerSnapshotViewerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09B2DD4C29B8FEDF00C831B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09B2DD5529B8FEDF00C831B2 /* ReducerSnapshotViewerUITests.swift in Sources */,
+				09B2DD5729B8FEDF00C831B2 /* ReducerSnapshotViewerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		09B2DD4829B8FEDF00C831B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09B2DD3429B8FEDE00C831B2 /* ReducerSnapshotViewer */;
+			targetProxy = 09B2DD4729B8FEDF00C831B2 /* PBXContainerItemProxy */;
+		};
+		09B2DD5229B8FEDF00C831B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09B2DD3429B8FEDE00C831B2 /* ReducerSnapshotViewer */;
+			targetProxy = 09B2DD5129B8FEDF00C831B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		09B2DD5829B8FEDF00C831B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		09B2DD5929B8FEDF00C831B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		09B2DD5B29B8FEDF00C831B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ReducerSnapshotViewer/ReducerSnapshotViewer.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ReducerSnapshotViewer/Preview Content\"";
+				DEVELOPMENT_TEAM = 4YSH9CUM84;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harmonicsense.ReducerSnapshotViewer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		09B2DD5C29B8FEDF00C831B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ReducerSnapshotViewer/ReducerSnapshotViewer.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ReducerSnapshotViewer/Preview Content\"";
+				DEVELOPMENT_TEAM = 4YSH9CUM84;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harmonicsense.ReducerSnapshotViewer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		09B2DD5E29B8FEDF00C831B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YSH9CUM84;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harmonicsense.ReducerSnapshotViewerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReducerSnapshotViewer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ReducerSnapshotViewer";
+			};
+			name = Debug;
+		};
+		09B2DD5F29B8FEDF00C831B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YSH9CUM84;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harmonicsense.ReducerSnapshotViewerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReducerSnapshotViewer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ReducerSnapshotViewer";
+			};
+			name = Release;
+		};
+		09B2DD6129B8FEDF00C831B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YSH9CUM84;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harmonicsense.ReducerSnapshotViewerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ReducerSnapshotViewer;
+			};
+			name = Debug;
+		};
+		09B2DD6229B8FEDF00C831B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YSH9CUM84;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harmonicsense.ReducerSnapshotViewerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ReducerSnapshotViewer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09B2DD3029B8FEDE00C831B2 /* Build configuration list for PBXProject "ReducerSnapshotViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09B2DD5829B8FEDF00C831B2 /* Debug */,
+				09B2DD5929B8FEDF00C831B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09B2DD5A29B8FEDF00C831B2 /* Build configuration list for PBXNativeTarget "ReducerSnapshotViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09B2DD5B29B8FEDF00C831B2 /* Debug */,
+				09B2DD5C29B8FEDF00C831B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09B2DD5D29B8FEDF00C831B2 /* Build configuration list for PBXNativeTarget "ReducerSnapshotViewerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09B2DD5E29B8FEDF00C831B2 /* Debug */,
+				09B2DD5F29B8FEDF00C831B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09B2DD6029B8FEDF00C831B2 /* Build configuration list for PBXNativeTarget "ReducerSnapshotViewerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09B2DD6129B8FEDF00C831B2 /* Debug */,
+				09B2DD6229B8FEDF00C831B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		09B2DD6329B8FF4400C831B2 /* XCRemoteSwiftPackageReference "ReducerArchitecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ilyathewhite/ReducerArchitecture.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		09B2DD7F29BA1E9A00C831B2 /* XCRemoteSwiftPackageReference "SwiftUIEx" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ilyathewhite/SwiftUIEx.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09B2DD6429B8FF4400C831B2 /* ReducerArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09B2DD6329B8FF4400C831B2 /* XCRemoteSwiftPackageReference "ReducerArchitecture" */;
+			productName = ReducerArchitecture;
+		};
+		09B2DD8029BA1E9A00C831B2 /* SwiftUIEx */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09B2DD7F29BA1E9A00C831B2 /* XCRemoteSwiftPackageReference "SwiftUIEx" */;
+			productName = SwiftUIEx;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 09B2DD2D29B8FEDE00C831B2 /* Project object */;
+}
