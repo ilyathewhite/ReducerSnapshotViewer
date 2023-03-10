@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct ReducerSnapshotViewerApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        DocumentGroup(viewing: SnapshotCollectionDocument.self) {
+            SnapshotCollectionDocumentView(document: $0.document)
         }
     }
 }

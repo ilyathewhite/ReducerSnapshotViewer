@@ -37,8 +37,12 @@ enum SnapshotCollectionViewer: StoreNamespace {
     }
     
     struct StoreState {
-        let snapshots: [ReducerSnapshotData]
+        let snapshotCollection: ReducerSnapshotCollection
         var iterator: Iterator = .init()
+        
+        var snapshots: [ReducerSnapshotData] {
+            snapshotCollection.snapshots
+        }
         
         var inputAction: String? {
             let snapshot = snapshots[iterator.index]
@@ -115,8 +119,8 @@ enum SnapshotCollectionViewer: StoreNamespace {
 
 extension SnapshotCollectionViewer {
     @MainActor
-    static func store(snapshots: [ReducerSnapshotData]) -> Store {
-        Store(identifier, .init(snapshots: snapshots), reducer: reducer(), env: nil)
+    static func store(snapshotCollection: ReducerSnapshotCollection) -> Store {
+        Store(identifier, .init(snapshotCollection: snapshotCollection), reducer: reducer(), env: nil)
     }
     
     @MainActor

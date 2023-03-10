@@ -96,6 +96,12 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
         
         var body: some View {
             VStack(spacing: 0) {
+                Text(store.state.snapshotCollection.title)
+                    .font(.largeTitle)
+                    .padding()
+
+                Divider()
+                
                 GeometryReader { proxy in
                     HStack(spacing: 0) {
                         let (actionViewWidth, snapshotStateViewWidth) = widths(total: proxy.size.width)
@@ -128,17 +134,18 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
             }
             .buttonStyle(.borderless)
             .background(backgroundColor)
+            .frame(minWidth: 1440, minHeight: 900)
         }
     }
 }
 
 struct SnapshotPlayer_Previews: PreviewProvider {
-    static let snapshots: [ReducerSnapshotData] = {
+    static let snapshotCollection: ReducerSnapshotCollection = {
         let data = try! Data(contentsOf: Bundle.main.url(forResource: "ChordDiagramEditor", withExtension: "json")!)
-        return try! JSONDecoder().decode([ReducerSnapshotData].self, from: data)
+        return try! JSONDecoder().decode(ReducerSnapshotCollection.self, from: data)
     }()
     
-    static let store = SnapshotCollectionViewer.store(snapshots: snapshots)
+    static let store = SnapshotCollectionViewer.store(snapshotCollection: snapshotCollection)
     
     static var previews: some View {
         SnapshotCollectionViewer.ContentView(store: store)

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		09B2DD3929B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD3829B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift */; };
-		09B2DD3B29B8FEDE00C831B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD3A29B8FEDE00C831B2 /* ContentView.swift */; };
 		09B2DD3D29B8FEDF00C831B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B2DD3C29B8FEDF00C831B2 /* Assets.xcassets */; };
 		09B2DD4029B8FEDF00C831B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B2DD3F29B8FEDF00C831B2 /* Preview Assets.xcassets */; };
 		09B2DD4B29B8FEDF00C831B2 /* ReducerSnapshotViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD4A29B8FEDF00C831B2 /* ReducerSnapshotViewerTests.swift */; };
@@ -23,6 +22,8 @@
 		09B2DD7C29B9A59A00C831B2 /* ChordDiagramEditor.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */; };
 		09B2DD7E29BA167E00C831B2 /* ViewEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */; };
 		09B2DD8129BA1E9A00C831B2 /* SwiftUIEx in Frameworks */ = {isa = PBXBuildFile; productRef = 09B2DD8029BA1E9A00C831B2 /* SwiftUIEx */; };
+		09B2DD8F29BB946800C831B2 /* SnapshotCollectionDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD8E29BB946800C831B2 /* SnapshotCollectionDocument.swift */; };
+		09B2DD9529BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD9429BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +46,6 @@
 /* Begin PBXFileReference section */
 		09B2DD3529B8FEDE00C831B2 /* ReducerSnapshotViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReducerSnapshotViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B2DD3829B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerSnapshotViewerApp.swift; sourceTree = "<group>"; };
-		09B2DD3A29B8FEDE00C831B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		09B2DD3C29B8FEDF00C831B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09B2DD3F29B8FEDF00C831B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		09B2DD4129B8FEDF00C831B2 /* ReducerSnapshotViewer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReducerSnapshotViewer.entitlements; sourceTree = "<group>"; };
@@ -64,6 +64,8 @@
 		09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ChordDiagramEditor.json; sourceTree = "<group>"; };
 		09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnvironment.swift; sourceTree = "<group>"; };
 		09B2DD8229BA1ED200C831B2 /* SwiftUIEx */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftUIEx; path = ../Packages/SwiftUIEx; sourceTree = "<group>"; };
+		09B2DD8E29BB946800C831B2 /* SnapshotCollectionDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionDocument.swift; sourceTree = "<group>"; };
+		09B2DD9429BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionDocumentUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,11 +121,11 @@
 		09B2DD3729B8FEDE00C831B2 /* ReducerSnapshotViewer */ = {
 			isa = PBXGroup;
 			children = (
+				09B2DD9629BB98C800C831B2 /* SnapshotCollectionDocument */,
 				09B2DD7629B99E4700C831B2 /* SnapshotCollectionViewer */,
 				09B2DD6629B8FF6700C831B2 /* SnapshotState */,
 				09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */,
 				09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */,
-				09B2DD3A29B8FEDE00C831B2 /* ContentView.swift */,
 				09B2DD3829B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift */,
 				09B2DD4129B8FEDF00C831B2 /* ReducerSnapshotViewer.entitlements */,
 				09B2DD3C29B8FEDF00C831B2 /* Assets.xcassets */,
@@ -174,6 +176,15 @@
 				09B2DD7929B99E9400C831B2 /* SnapshotCollectionViewerUI.swift */,
 			);
 			path = SnapshotCollectionViewer;
+			sourceTree = "<group>";
+		};
+		09B2DD9629BB98C800C831B2 /* SnapshotCollectionDocument */ = {
+			isa = PBXGroup;
+			children = (
+				09B2DD8E29BB946800C831B2 /* SnapshotCollectionDocument.swift */,
+				09B2DD9429BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift */,
+			);
+			path = SnapshotCollectionDocument;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,9 +327,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09B2DD7E29BA167E00C831B2 /* ViewEnvironment.swift in Sources */,
-				09B2DD3B29B8FEDE00C831B2 /* ContentView.swift in Sources */,
+				09B2DD9529BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift in Sources */,
 				09B2DD6829B8FFA100C831B2 /* SnapshotState.swift in Sources */,
 				09B2DD7229B99A3300C831B2 /* SnapshotActionView.swift in Sources */,
+				09B2DD8F29BB946800C831B2 /* SnapshotCollectionDocument.swift in Sources */,
 				09B2DD3929B8FEDE00C831B2 /* ReducerSnapshotViewerApp.swift in Sources */,
 				09B2DD7A29B99E9400C831B2 /* SnapshotCollectionViewerUI.swift in Sources */,
 				09B2DD7829B99E8900C831B2 /* SnapshotCollectionViewer.swift in Sources */,
