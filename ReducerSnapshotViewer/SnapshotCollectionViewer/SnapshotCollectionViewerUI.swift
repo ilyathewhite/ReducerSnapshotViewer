@@ -96,6 +96,10 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
         
         var body: some View {
             VStack(spacing: 0) {
+                ProgressView(value: store.state.progressValue)
+                    .progressViewStyle(.linear)
+                    .offset(x: 0, y: -5) // hide extra padding
+
                 Text(store.state.snapshotCollection.title)
                     .font(.largeTitle)
                     .padding()

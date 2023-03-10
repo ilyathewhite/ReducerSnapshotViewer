@@ -28,12 +28,20 @@ enum SnapshotCollectionViewer: StoreNamespace {
     }
     
     struct Iterator: Equatable {
-        enum SnapshotStep {
+        enum SnapshotStep: CaseIterable {
             case input, stateChange, output
+            
+            static var stepCount: Int {
+                allCases.count
+            }
         }
         
         var snapshotStep: SnapshotStep = .input
         var index = 0
+        
+        var step: Int {
+            SnapshotStep.stepCount * index + (SnapshotStep.allCases.firstIndex(of: snapshotStep) ?? 0)
+        }
     }
     
     struct StoreState {
@@ -42,6 +50,12 @@ enum SnapshotCollectionViewer: StoreNamespace {
         
         var snapshots: [ReducerSnapshotData] {
             snapshotCollection.snapshots
+        }
+                
+        var progressValue: Double {
+            let totalStepCount = Iterator.SnapshotStep.stepCount * snapshots.count - 1
+            guard totalStepCount >= 1 else { return 1 }
+            return Double(iterator.step) / Double(totalStepCount)
         }
         
         var inputAction: String? {
