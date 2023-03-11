@@ -11,27 +11,72 @@ import ReducerArchitecture
 
 enum SnapshotState: StoreNamespace {
     typealias PublishedValue = Void
-    typealias StoreEnvironment = Never
-    typealias EffectAction = Never
+
+    struct StoreEnvironment {
+        let showDiff: (_ propertyName: String, _ oldValue: String, _ newValue: String) -> Void
+    }
 
     enum MutatingAction {
         case toggleExpanded(property: String)
         case update([CodePropertyValuePair], resetUpdateStatus: Bool)
     }
+
+    enum EffectAction {
+        case showDiff(propertyName: String, oldValue: String, newValue: String)
+    }
+
+    enum RowValue {
+        case same(String)
+        case updated(old: String, new: String)
+        
+        var latest: String {
+            switch self {
+            case .same(let value):
+                return value
+            case let .updated(_, newValue):
+                return newValue
+            }
+        }
+        
+        var isUpdated: Bool {
+            switch self {
+            case .same:
+                return false
+            case .updated:
+                return true
+            }
+        }
+        
+        static func rowValue(old: String, new: String) -> Self {
+            old == new ? .same(new) : .updated(old: old, new: new)
+        }
+    }
     
     struct Row: Identifiable {
-        var isUpdated = false
         var isExpanded = false
         var property: String
-        var value: String
+        var value: RowValue
         
         var id: String {
             property
         }
         
+        var isUpdated: Bool {
+            value.isUpdated
+        }
+        
+        var change: (old: String, new: String)? {
+            switch value {
+            case .same:
+                return nil
+            case let .updated(old, new):
+                return (old, new)
+            }
+        }
+        
         init(_ pair: CodePropertyValuePair) {
             self.property = pair.property
-            self.value = pair.value
+            self.value = .same(pair.value)
         }
     }
     
@@ -48,31 +93,42 @@ extension SnapshotState {
     
     @MainActor
     static func reducer() -> Reducer {
-        .init { state, action in
-            switch action {
-            case .toggleExpanded(let property):
-                guard let index = state.rows.firstIndex(where: { $0.property == property }) else {
-                    assertionFailure()
-                    return .none
-                }
-                state.rows[index].isExpanded.toggle()
-                
-            case let .update(rows, resetUpdateStatus):
-                guard rows.count == state.rows.count else {
-                    state.rows = rows.map { .init($0) }
-                    return .none
-                }
-                for index in rows.indices {
-                    guard state.rows[index].property == rows[index].property else {
+        .init(
+            run: { state, action in
+                switch action {
+                case .toggleExpanded(let property):
+                    guard let index = state.rows.firstIndex(where: { $0.property == property }) else {
                         assertionFailure()
                         return .none
                     }
-                    state.rows[index].isUpdated = resetUpdateStatus ? false : (state.rows[index].value != rows[index].value)
-                    state.rows[index].value = rows[index].value
+                    state.rows[index].isExpanded.toggle()
+                    
+                case let .update(rows, resetUpdateStatus):
+                    guard rows.count == state.rows.count else {
+                        state.rows = rows.map { .init($0) }
+                        return .none
+                    }
+                    for index in rows.indices {
+                        guard state.rows[index].property == rows[index].property else {
+                            assertionFailure()
+                            return .none
+                        }
+                        
+                        let oldValue = state.rows[index].value.latest
+                        let newValue = rows[index].value
+                        state.rows[index].value = resetUpdateStatus ? .same(newValue) : .rowValue(old: oldValue, new: newValue)
+                    }
                 }
+                
+                return .none
+            },
+            effect: { env, state, action in
+                switch action {
+                case let .showDiff(propertyName, oldValue, newValue):
+                    env.showDiff(propertyName, oldValue, newValue)
+                }
+                return .none
             }
-
-            return .none
-        }
+        )
     }
 }

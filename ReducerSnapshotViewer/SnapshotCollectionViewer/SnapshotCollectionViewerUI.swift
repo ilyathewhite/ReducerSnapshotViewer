@@ -105,7 +105,7 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
                     .offset(x: 0, y: -5) // hide extra padding
 
                 Text(store.state.snapshotCollection.title)
-                    .font(.largeTitle)
+                    .font(.title)
                     .padding()
 
                 Divider()

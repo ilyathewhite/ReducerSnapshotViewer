@@ -22,6 +22,23 @@ extension SnapshotState: StoreUIWrapper {
         @State private var fixedWidth: CGFloat?
         private let propertyNamePadding: CGFloat = 10
         
+        @State private var stringDiffUI: StoreUI<StringDiff>?
+
+        @ViewBuilder
+        func stringDiffView() -> some View {
+            NavigationStack {
+                stringDiffUI?.makeView()
+                    .navigationTitle(stringDiffUI?.store.state.title ?? "Diff")
+                    .toolbar {
+                        ToolbarItemGroup(placement: .confirmationAction) {
+                            Button("Done") {
+                                stringDiffUI = nil
+                            }
+                        }
+                    }
+            }
+        }
+
         init(store: Store) {
             self.store = store
         }
@@ -65,7 +82,7 @@ extension SnapshotState: StoreUIWrapper {
                             }
                             .frame(width: fixedWidth)
 
-                            Text(row.value)
+                            Text(row.value.latest)
                                 .padding(.vertical, propertyNamePadding)
                                 .lineLimit(row.isExpanded ? nil : 1)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -73,12 +90,33 @@ extension SnapshotState: StoreUIWrapper {
                                 .fitCodeString(fixedWidth: false)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            guard let (old, new) = row.change else { return }
+                            store.send(.effect(.showDiff(propertyName: row.property, oldValue: old, newValue: new)))
+                        }
+                        .sheet(isPresented: showUI(\.stringDiffUI)) {
+                            stringDiffView()
+                        }
                         Divider()
                     }
                 }
                 .buttonStyle(.borderless)
                 .frame(maxHeight: .infinity, alignment: .top)
-                // .border(.gray)
+            }
+            .connectOnAppear {
+                store.environment = .init(
+                    showDiff: { property, oldValue, newValue in
+                        let store = StringDiff.store(
+                            title: property,
+                            string1Caption: "Old Value",
+                            string1: oldValue,
+                            string2Caption: "New Value",
+                            string2: newValue
+                        )
+                        stringDiffUI = .init(store)
+                    }
+                )
             }
         }
     }
