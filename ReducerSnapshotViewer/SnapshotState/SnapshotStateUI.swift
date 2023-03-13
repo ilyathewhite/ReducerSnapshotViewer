@@ -68,6 +68,7 @@ extension SnapshotState: StoreUIWrapper {
                                 }
                                 
                                 Text(row.property)
+                                    .textSelection(.enabled)
                                     .padding(.vertical, propertyNamePadding)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .font(codingFont)
@@ -83,6 +84,7 @@ extension SnapshotState: StoreUIWrapper {
                             .frame(width: fixedWidth)
 
                             Text(row.value.latest)
+                                .textSelection(.enabled)
                                 .padding(.vertical, propertyNamePadding)
                                 .lineLimit(row.isExpanded ? nil : 1)
                                 .fixedSize(horizontal: false, vertical: true)

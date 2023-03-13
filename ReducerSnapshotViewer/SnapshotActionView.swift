@@ -20,6 +20,7 @@ struct SnapshotActionView: View {
     static func actionText(action: String, font: Font) -> some View {
         ScrollView {
             Text(action)
+                .textSelection(.enabled)
                 .font(font)
                 .fitCodeString(fixedWidth: false)
                 .padding(.vertical)

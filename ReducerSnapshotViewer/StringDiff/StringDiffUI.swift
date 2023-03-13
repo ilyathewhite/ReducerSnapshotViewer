@@ -29,6 +29,7 @@ struct StringView: View {
             Divider()
             ScrollView {
                 Text(string)
+                    .textSelection(.enabled)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fitCodeString(charCount: Int(1.5 * Double(codeStringDefaultMaxWidth)), fixedWidth: false)
