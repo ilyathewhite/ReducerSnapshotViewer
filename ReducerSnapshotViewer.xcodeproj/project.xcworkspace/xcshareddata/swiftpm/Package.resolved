@@ -18,6 +18,15 @@
           "revision": "3907a9438f5b57d317001dc99f3f11b46882272b",
           "version": "0.10.0"
         }
+      },
+      {
+        "package": "SwiftUIEx",
+        "repositoryURL": "https://github.com/ilyathewhite/SwiftUIEx.git",
+        "state": {
+          "branch": "main",
+          "revision": "351f0183d2bcefa8ae9bfe4085a3941f6681e1f7",
+          "version": null
+        }
       }
     ]
   },

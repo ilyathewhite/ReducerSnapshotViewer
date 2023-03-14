@@ -52,7 +52,7 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
                 mode = .stateChange
                 action = nil
             }
-            return SnapshotActionView(action: action, mode: mode)
+            return SnapshotActionView(action: action, mode: mode, nestedLevel: store.state.nestedLevel)
         }
         
         @State private var actionViewFixedWidth: CGFloat?
@@ -134,11 +134,11 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
             .connectOnAppear {
                 store.environment = .init(
                     updateSnapshot: {
-                        snapshotStateStore.send(.mutating(.update($0, resetUpdateStatus: $1), animated: true, stepAnimation))
+                        snapshotStateStore.send(.mutating(.update($0, from: $1), animated: true, stepAnimation))
                     }
                 )
                 
-                snapshotStateStore.send(.mutating(.update(store.state.snapshotState, resetUpdateStatus: true)))
+                snapshotStateStore.send(.mutating(.update(store.state.snapshotState, from: nil)))
             }
             .buttonStyle(.borderless)
             .background(backgroundColor)

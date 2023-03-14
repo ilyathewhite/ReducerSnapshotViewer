@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIEx
 
 struct SnapshotActionView: View {
     @Environment(\.codingFont) var codingFont
@@ -16,8 +17,13 @@ struct SnapshotActionView: View {
     
     let action: String?
     let mode: Mode
+    let nestedLevel: Int
     
-    static func actionText(action: String, font: Font) -> some View {
+    enum ArrowHeightTag {}
+    typealias ArrowHeightKey = MeasurementKey<CGFloat, ArrowHeightTag>
+    @State private var arrowHeight: CGFloat?
+    
+    func actionText(action: String, font: Font) -> some View {
         ScrollView {
             Text(action)
                 .textSelection(.enabled)
@@ -27,7 +33,7 @@ struct SnapshotActionView: View {
         }
     }
     
-    static func arrowIconName(mode: Mode) -> String? {
+    func arrowIconName(mode: Mode) -> String? {
         switch mode {
         case .input:
             return "arrow.right"
@@ -39,15 +45,26 @@ struct SnapshotActionView: View {
     }
     
     @ViewBuilder
-    static func arrow(mode: Mode) -> some View {
+    func arrow(mode: Mode) -> some View {
         if let iconName = arrowIconName(mode: mode) {
             Image(systemName: iconName)
                 .font(.largeTitle.bold())
                 .foregroundColor(.secondary)
+                .background(nestedLevelText)
+                .measureHeight(ArrowHeightKey.self) { arrowHeight = $0 }
         }
     }
     
-    static func actionContent(action: String, mode: Mode, font: Font) -> some View {
+    @ViewBuilder
+    var nestedLevelText: some View {
+        if nestedLevel > 0 {
+            Text(String(nestedLevel))
+                .font(codingFont)
+                .offset(x: 0, y: arrowHeight ?? 0)
+        }
+    }
+    
+    func actionContent(action: String, mode: Mode, font: Font) -> some View {
         let padding: CGFloat = 15
         return HStack(spacing: padding) {
             actionText(action: action, font: font)
@@ -62,7 +79,7 @@ struct SnapshotActionView: View {
     
     var body: some View {
         if let action {
-            Self.actionContent(action: action, mode: mode, font: codingFont)
+            actionContent(action: action, mode: mode, font: codingFont)
         }
         else {
             Text("State Change")
@@ -94,11 +111,11 @@ struct SnapshotActionView_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack(spacing: 50) {
-            SnapshotActionView(action: inputAction, mode: .input)
+            SnapshotActionView(action: inputAction, mode: .input, nestedLevel: 2)
                 .border(Color.black)
-            SnapshotActionView(action: effect, mode: .output)
+            SnapshotActionView(action: effect, mode: .output, nestedLevel: 2)
                 .border(Color.black)
-            SnapshotActionView(action: nil, mode: .stateChange)
+            SnapshotActionView(action: nil, mode: .stateChange, nestedLevel: 2)
                 .border(Color.black)
         }
     }

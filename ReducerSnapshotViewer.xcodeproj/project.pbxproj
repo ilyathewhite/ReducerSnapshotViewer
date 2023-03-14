@@ -65,7 +65,6 @@
 		09B2DD7929B99E9400C831B2 /* SnapshotCollectionViewerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionViewerUI.swift; sourceTree = "<group>"; };
 		09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ChordDiagramEditor.json; sourceTree = "<group>"; };
 		09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnvironment.swift; sourceTree = "<group>"; };
-		09B2DD8229BA1ED200C831B2 /* SwiftUIEx */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftUIEx; path = ../Packages/SwiftUIEx; sourceTree = "<group>"; };
 		09B2DD8E29BB946800C831B2 /* SnapshotCollectionDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionDocument.swift; sourceTree = "<group>"; };
 		09B2DD9429BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionDocumentUI.swift; sourceTree = "<group>"; };
 		09B2DD9829BBBE3E00C831B2 /* StringDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDiff.swift; sourceTree = "<group>"; };
@@ -102,7 +101,6 @@
 		09B2DD2C29B8FEDE00C831B2 = {
 			isa = PBXGroup;
 			children = (
-				09B2DD8229BA1ED200C831B2 /* SwiftUIEx */,
 				09B2DD7029B9050000C831B2 /* FoundationEx */,
 				09B2DD6F29B9019100C831B2 /* ReducerArchitecture */,
 				09B2DD3729B8FEDE00C831B2 /* ReducerSnapshotViewer */,

@@ -13,7 +13,7 @@ enum SnapshotCollectionViewer: StoreNamespace {
     typealias PublishedValue = Void
     
     struct StoreEnvironment {
-        let updateSnapshot: ([CodePropertyValuePair], _ resetUpdateStatus: Bool) -> Void
+        let updateSnapshot: ([CodePropertyValuePair], _ from: [CodePropertyValuePair]) -> Void
     }
     
     enum MutatingAction {
@@ -24,109 +24,76 @@ enum SnapshotCollectionViewer: StoreNamespace {
     }
     
     enum EffectAction {
-        case updateSnapshot([CodePropertyValuePair], resetUpdateStatus: Bool)
-    }
-    
-    struct Iterator: Equatable {
-        enum SnapshotStep: CaseIterable {
-            case input, stateChange, output
-            
-            static var stepCount: Int {
-                allCases.count
-            }
-        }
-        
-        var snapshotStep: SnapshotStep = .input
-        var index = 0
-        
-        var step: Int {
-            SnapshotStep.stepCount * index + (SnapshotStep.allCases.firstIndex(of: snapshotStep) ?? 0)
-        }
+        case updateSnapshot
     }
     
     struct StoreState {
         let snapshotCollection: ReducerSnapshotCollection
-        var iterator: Iterator = .init()
+        var index: Int = 0
         
         var snapshots: [ReducerSnapshotData] {
             snapshotCollection.snapshots
         }
-                
+        
         var progressValue: Double {
-            let totalStepCount = Iterator.SnapshotStep.stepCount * snapshots.count - 1
-            guard totalStepCount >= 1 else { return 1 }
-            return Double(iterator.step) / Double(totalStepCount)
+            guard snapshots.count >= 0 else { return 1 }
+            return Double(index + 1) / Double(snapshots.count)
         }
         
         var inputAction: String? {
-            let snapshot = snapshots[iterator.index]
-            switch iterator.snapshotStep {
-            case .input:
-                return snapshot.action
-            case .stateChange:
-                return nil
-            case .output:
+            switch snapshots[index] {
+            case let .input(_, action: action, encodedAction: _, state: _, encodedState: _, nestedLevel: _):
+                return action
+            default:
                 return nil
             }
         }
         
         var outputAction: String? {
-            let snapshot = snapshots[iterator.index]
-            switch iterator.snapshotStep {
-            case .input:
+            switch snapshots[index] {
+            case let .output(_, effect: effect, encodedEffect: _, state: _, encodedState: _, nestedLevel: _):
+                return effect
+            default:
                 return nil
-            case .stateChange:
-                return nil
-            case .output:
-                return snapshot.effect
+            }
+        }
+        
+        func snapshotState(at index: Int) -> [CodePropertyValuePair] {
+            switch snapshots[index] {
+            case let .input(_, action: _, encodedAction: _, state: state, encodedState: _, nestedLevel: _):
+                return state
+            case let .stateChange(_, state: state, encodedState: _, nestedLevel: _):
+                return state
+            case let .output(_, effect: _, encodedEffect: _, state: state, encodedState: _, nestedLevel: _):
+                return state
             }
         }
         
         var snapshotState: [CodePropertyValuePair] {
-            let snapshot = snapshots[iterator.index]
-            switch iterator.snapshotStep {
-            case .input:
-                return snapshot.inputState
-            case .stateChange:
-                return snapshot.outputState
-            case .output:
-                return snapshot.outputState
+            snapshotState(at: index)
+        }
+        
+        var prevSnapshotState: [CodePropertyValuePair] {
+            index - 1 >= 0 ? snapshotState(at: index - 1) : snapshotState(at: index)
+        }
+        
+        var nestedLevel: Int {
+            switch snapshots[index] {
+            case let .input(_, action: _, encodedAction: _, state: _, encodedState: _, nestedLevel: nestedLevel):
+                return nestedLevel
+            case let .stateChange(_, state: _, encodedState: _, nestedLevel: nestedLevel):
+                return nestedLevel
+            case let .output(_, effect: _, encodedEffect: _, state: _, encodedState: _, nestedLevel: nestedLevel):
+                return nestedLevel
             }
         }
         
         var isAtEnd: Bool {
-            if iterator.index == snapshots.count {
-                return true
-            }
-            else if iterator.index + 1 == snapshots.count {
-                switch iterator.snapshotStep {
-                case .input:
-                    return false
-                case .stateChange:
-                    return false
-                case .output:
-                    return true
-                }
-            }
-            else {
-                return false
-            }
+            index >= snapshots.count - 1
         }
         
         var isAtStart: Bool {
-            if iterator.index > 0 {
-                return false
-            }
-            else {
-                switch iterator.snapshotStep {
-                case .output:
-                    return false
-                case .stateChange:
-                    return false
-                case .input:
-                    return true
-                }
-            }
+            index == 0
         }
     }
 }
@@ -144,44 +111,27 @@ extension SnapshotCollectionViewer {
                 switch action {
                 case .moveForward:
                     guard !state.isAtEnd else { return .none }
-                    switch state.iterator.snapshotStep {
-                    case .input:
-                        state.iterator.snapshotStep = .stateChange
-                    case .stateChange:
-                        state.iterator.snapshotStep = .output
-                    case .output:
-                        state.iterator.index += 1
-                        state.iterator.snapshotStep = .input
-                    }
-                    return .action(.effect(.updateSnapshot(state.snapshotState, resetUpdateStatus: false)))
+                    state.index += 1
+                    return .action(.effect(.updateSnapshot))
                     
                 case .moveBackward:
                     guard !state.isAtStart else { return .none }
-                    switch state.iterator.snapshotStep {
-                    case .output:
-                        state.iterator.snapshotStep = .stateChange
-                    case .stateChange:
-                        state.iterator.snapshotStep = .input
-                    case .input:
-                        state.iterator.index -= 1
-                        state.iterator.snapshotStep = .output
-                    }
-                    return .action(.effect(.updateSnapshot(state.snapshotState, resetUpdateStatus: true)))
-                    
+                    state.index -= 1
+                    return .action(.effect(.updateSnapshot))
+
                 case .moveToFirst:
-                    state.iterator = .init()
-                    return .action(.effect(.updateSnapshot(state.snapshotState, resetUpdateStatus: true)))
-                    
+                    state.index = 0
+                    return .action(.effect(.updateSnapshot))
+
                 case .moveToLast:
-                    state.iterator.index = state.snapshots.count - 1
-                    state.iterator.snapshotStep = .output
-                    return .action(.effect(.updateSnapshot(state.snapshotState, resetUpdateStatus: true)))
+                    state.index = state.snapshots.count - 1
+                    return .action(.effect(.updateSnapshot))
                 }
             },
             effect: { env, state, action in
                 switch action {
-                case let .updateSnapshot(snapshot, resetUpdateStatus):
-                    env.updateSnapshot(snapshot, resetUpdateStatus)
+                case .updateSnapshot:
+                    env.updateSnapshot(state.snapshotState, state.prevSnapshotState)
                     return .none
                 }
             }

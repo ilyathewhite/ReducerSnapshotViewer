@@ -200,7 +200,7 @@ struct SnapshotState_Previews: PreviewProvider {
             SnapshotState.ContentView(store: store)
                 .frame(width: 900)
             Button("Update") {
-                store.send(.mutating(.update(state2, resetUpdateStatus: false), animated: true, .easeInOut(duration: 0.2)))
+                store.send(.mutating(.update(state2, from: state), animated: true, .easeInOut(duration: 0.2)))
             }
             .padding()
             .buttonStyle(.borderless)

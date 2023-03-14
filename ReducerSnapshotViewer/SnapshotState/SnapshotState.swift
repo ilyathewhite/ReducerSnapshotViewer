@@ -18,7 +18,7 @@ enum SnapshotState: StoreNamespace {
 
     enum MutatingAction {
         case toggleExpanded(property: String)
-        case update([CodePropertyValuePair], resetUpdateStatus: Bool)
+        case update([CodePropertyValuePair], from: [CodePropertyValuePair]?)
     }
 
     enum EffectAction {
@@ -103,7 +103,7 @@ extension SnapshotState {
                     }
                     state.rows[index].isExpanded.toggle()
                     
-                case let .update(rows, resetUpdateStatus):
+                case let .update(rows, prevRows):
                     guard rows.count == state.rows.count else {
                         state.rows = rows.map { .init($0) }
                         return .none
@@ -114,9 +114,9 @@ extension SnapshotState {
                             return .none
                         }
                         
-                        let oldValue = state.rows[index].value.latest
+                        let oldValue = prevRows?[index].value
                         let newValue = rows[index].value
-                        state.rows[index].value = resetUpdateStatus ? .same(newValue) : .rowValue(old: oldValue, new: newValue)
+                        state.rows[index].value = .rowValue(old: oldValue ?? newValue, new: newValue)
                     }
                 }
                 
