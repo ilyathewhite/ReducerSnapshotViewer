@@ -19,13 +19,13 @@
 		09B2DD7229B99A3300C831B2 /* SnapshotActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */; };
 		09B2DD7829B99E8900C831B2 /* SnapshotCollectionViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7729B99E8900C831B2 /* SnapshotCollectionViewer.swift */; };
 		09B2DD7A29B99E9400C831B2 /* SnapshotCollectionViewerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7929B99E9400C831B2 /* SnapshotCollectionViewerUI.swift */; };
-		09B2DD7C29B9A59A00C831B2 /* ChordDiagramEditor.json in Resources */ = {isa = PBXBuildFile; fileRef = 09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */; };
 		09B2DD7E29BA167E00C831B2 /* ViewEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */; };
 		09B2DD8129BA1E9A00C831B2 /* SwiftUIEx in Frameworks */ = {isa = PBXBuildFile; productRef = 09B2DD8029BA1E9A00C831B2 /* SwiftUIEx */; };
 		09B2DD8F29BB946800C831B2 /* SnapshotCollectionDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD8E29BB946800C831B2 /* SnapshotCollectionDocument.swift */; };
 		09B2DD9529BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD9429BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift */; };
 		09B2DD9929BBBE3E00C831B2 /* StringDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD9829BBBE3E00C831B2 /* StringDiff.swift */; };
 		09B2DD9B29BBBE4700C831B2 /* StringDiffUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2DD9A29BBBE4700C831B2 /* StringDiffUI.swift */; };
+		09DAC36329C215E400448FCC /* ChordDiagramEditor.lzma in Resources */ = {isa = PBXBuildFile; fileRef = 09DAC36229C215E400448FCC /* ChordDiagramEditor.lzma */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,12 +63,12 @@
 		09B2DD7129B99A3300C831B2 /* SnapshotActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotActionView.swift; sourceTree = "<group>"; };
 		09B2DD7729B99E8900C831B2 /* SnapshotCollectionViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionViewer.swift; sourceTree = "<group>"; };
 		09B2DD7929B99E9400C831B2 /* SnapshotCollectionViewerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionViewerUI.swift; sourceTree = "<group>"; };
-		09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ChordDiagramEditor.json; sourceTree = "<group>"; };
 		09B2DD7D29BA167E00C831B2 /* ViewEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnvironment.swift; sourceTree = "<group>"; };
 		09B2DD8E29BB946800C831B2 /* SnapshotCollectionDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionDocument.swift; sourceTree = "<group>"; };
 		09B2DD9429BB98C200C831B2 /* SnapshotCollectionDocumentUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCollectionDocumentUI.swift; sourceTree = "<group>"; };
 		09B2DD9829BBBE3E00C831B2 /* StringDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDiff.swift; sourceTree = "<group>"; };
 		09B2DD9A29BBBE4700C831B2 /* StringDiffUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDiffUI.swift; sourceTree = "<group>"; };
+		09DAC36229C215E400448FCC /* ChordDiagramEditor.lzma */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChordDiagramEditor.lzma; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +140,7 @@
 		09B2DD3E29B8FEDF00C831B2 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				09B2DD7B29B9A59A00C831B2 /* ChordDiagramEditor.json */,
+				09DAC36229C215E400448FCC /* ChordDiagramEditor.lzma */,
 				09B2DD3F29B8FEDF00C831B2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -313,7 +313,7 @@
 			files = (
 				09B2DD4029B8FEDF00C831B2 /* Preview Assets.xcassets in Resources */,
 				09B2DD3D29B8FEDF00C831B2 /* Assets.xcassets in Resources */,
-				09B2DD7C29B9A59A00C831B2 /* ChordDiagramEditor.json in Resources */,
+				09DAC36329C215E400448FCC /* ChordDiagramEditor.lzma in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

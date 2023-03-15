@@ -149,8 +149,8 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
 
 struct SnapshotPlayer_Previews: PreviewProvider {
     static let snapshotCollection: ReducerSnapshotCollection = {
-        let data = try! Data(contentsOf: Bundle.main.url(forResource: "ChordDiagramEditor", withExtension: "json")!)
-        return try! JSONDecoder().decode(ReducerSnapshotCollection.self, from: data)
+        let url = Bundle.main.url(forResource: "ChordDiagramEditor", withExtension: "lzma")!
+        return try! ReducerSnapshotCollection.load(from: url)
     }()
     
     static let store = SnapshotCollectionViewer.store(snapshotCollection: snapshotCollection)

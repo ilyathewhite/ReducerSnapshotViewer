@@ -10,7 +10,7 @@ import ReducerArchitecture
 import UniformTypeIdentifiers
 
 struct SnapshotCollectionDocument: FileDocument {
-    static var readableContentTypes = [UTType.json]
+    static var readableContentTypes = [UTType.data]
 
     enum Error: Swift.Error {
         case invalidContent
@@ -23,8 +23,7 @@ struct SnapshotCollectionDocument: FileDocument {
         guard let data = configuration.file.regularFileContents else {
             throw Error.invalidContent
         }
-        
-        snapshotCollection = try JSONDecoder().decode(ReducerSnapshotCollection.self, from: data)
+        snapshotCollection = try .init(compressedData: data)
     }
 
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
