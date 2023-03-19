@@ -21,6 +21,8 @@ enum SnapshotCollectionViewer: StoreNamespace {
         case moveBackward
         case moveToFirst
         case moveToLast
+        case updateJumpStepInput(String)
+        case jumpTo(step: Int)
     }
     
     enum EffectAction {
@@ -30,6 +32,7 @@ enum SnapshotCollectionViewer: StoreNamespace {
     struct StoreState {
         let snapshotCollection: ReducerSnapshotCollection
         var index: Int = 0
+        var jumpStepInput = ""
         
         var snapshots: [ReducerSnapshotData] {
             snapshotCollection.snapshots
@@ -42,8 +45,8 @@ enum SnapshotCollectionViewer: StoreNamespace {
         
         var inputAction: String? {
             switch snapshots[index] {
-            case let .input(_, action: action, encodedAction: _, state: _, encodedState: _, nestedLevel: _):
-                return action
+            case .input(let input):
+                return input.action
             default:
                 return nil
             }
@@ -51,8 +54,8 @@ enum SnapshotCollectionViewer: StoreNamespace {
         
         var outputAction: String? {
             switch snapshots[index] {
-            case let .output(_, effect: effect, encodedEffect: _, state: _, encodedState: _, nestedLevel: _):
-                return effect
+            case .output(let output):
+                return output.effect
             default:
                 return nil
             }
@@ -60,12 +63,12 @@ enum SnapshotCollectionViewer: StoreNamespace {
         
         func snapshotState(at index: Int) -> [CodePropertyValuePair] {
             switch snapshots[index] {
-            case let .input(_, action: _, encodedAction: _, state: state, encodedState: _, nestedLevel: _):
-                return state
-            case let .stateChange(_, state: state, encodedState: _, nestedLevel: _):
-                return state
-            case let .output(_, effect: _, encodedEffect: _, state: state, encodedState: _, nestedLevel: _):
-                return state
+            case .input(let input):
+                return input.state
+            case .stateChange(let stateChange):
+                return stateChange.state
+            case .output(let output):
+                return output.state
             }
         }
         
@@ -79,12 +82,12 @@ enum SnapshotCollectionViewer: StoreNamespace {
         
         var nestedLevel: Int {
             switch snapshots[index] {
-            case let .input(_, action: _, encodedAction: _, state: _, encodedState: _, nestedLevel: nestedLevel):
-                return nestedLevel
-            case let .stateChange(_, state: _, encodedState: _, nestedLevel: nestedLevel):
-                return nestedLevel
-            case let .output(_, effect: _, encodedEffect: _, state: _, encodedState: _, nestedLevel: nestedLevel):
-                return nestedLevel
+            case .input(let input):
+                return input.nestedLevel
+            case .stateChange(let stateChange):
+                return stateChange.nestedLevel
+            case .output(let output):
+                return output.nestedLevel
             }
         }
         
@@ -94,6 +97,22 @@ enum SnapshotCollectionViewer: StoreNamespace {
         
         var isAtStart: Bool {
             index == 0
+        }
+        
+        var stepString: String {
+            String(index + 1)
+        }
+        
+        func canJumpTo(step: Int) -> Bool {
+            let index = step - 1
+            return (0 <= index) && (index < snapshots.count)
+        }
+        
+        mutating func jump(to step: Int) -> Bool {
+            guard canJumpTo(step: step) else { return false }
+            index = step - 1
+            jumpStepInput = ""
+            return true
         }
     }
 }
@@ -126,6 +145,13 @@ extension SnapshotCollectionViewer {
                 case .moveToLast:
                     state.index = state.snapshots.count - 1
                     return .action(.effect(.updateSnapshot))
+                    
+                case .updateJumpStepInput(let str):
+                    state.jumpStepInput = str
+                    return .none
+                    
+                case .jumpTo(let step):
+                    return state.jump(to: step) ? .action(.effect(.updateSnapshot)) : .none
                 }
             },
             effect: { env, state, action in

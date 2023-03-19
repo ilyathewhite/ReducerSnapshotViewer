@@ -34,6 +34,8 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
         }
         
         @StateObject private var snapshotStateStore = SnapshotState.store(state: [])
+
+        @FocusState private var jumpStepIsFocused
         
         let stepAnimation: Animation = .easeOut(duration: 0.15)
         
@@ -69,33 +71,50 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
 
         @ViewBuilder
         var toolbar: some View {
-            HStack {
-                Button(action: { store.send(.mutating(.moveToFirst, animated: true, stepAnimation)) }) {
-                    Image(systemName: "arrow.left.to.line.circle")
+            ZStack {
+                HStack {
+                    Button(action: { store.send(.mutating(.moveToFirst, animated: true, stepAnimation)) }) {
+                        Image(systemName: "arrow.left.to.line.circle")
+                    }
+                    .keyboardShortcut(.leftArrow, modifiers: .command)
+                    .disabled(store.state.isAtStart)
+                    
+                    Button(action: { store.send(.mutating(.moveBackward, animated: true, stepAnimation)) }) {
+                        Image(systemName: "arrow.left.circle")
+                    }
+                    .keyboardShortcut(.leftArrow, modifiers: [])
+                    .disabled(store.state.isAtStart)
+                    
+                    Button(action: { store.send(.mutating(.moveForward, animated: true, stepAnimation)) }) {
+                        Image(systemName: "arrow.right.circle")
+                    }
+                    .keyboardShortcut(.rightArrow, modifiers: [])
+                    .disabled(store.state.isAtEnd)
+                    
+                    Button(action: { store.send(.mutating(.moveToLast, animated: true, stepAnimation)) }) {
+                        Image(systemName: "arrow.right.to.line.circle")
+                    }
+                    .keyboardShortcut(.rightArrow, modifiers: .command)
+                    .disabled(store.state.isAtEnd)
                 }
-                .keyboardShortcut(.leftArrow, modifiers: .command)
-                .disabled(store.state.isAtStart)
-
-                Button(action: { store.send(.mutating(.moveBackward, animated: true, stepAnimation)) }) {
-                    Image(systemName: "arrow.left.circle")
-                }
-                .keyboardShortcut(.leftArrow, modifiers: [])
-                .disabled(store.state.isAtStart)
-
-                Button(action: { store.send(.mutating(.moveForward, animated: true, stepAnimation)) }) {
-                    Image(systemName: "arrow.right.circle")
-                }
-                .keyboardShortcut(.rightArrow, modifiers: [])
-                .disabled(store.state.isAtEnd)
+                .padding(10)
+                .font(.system(size: 50))
                 
-                Button(action: { store.send(.mutating(.moveToLast, animated: true, stepAnimation)) }) {
-                    Image(systemName: "arrow.right.to.line.circle")
+                HStack(alignment: .firstTextBaseline, spacing: 10) {
+                    Text("Jump to")
+                    TextField("Step", text: store.binding(\.jumpStepInput, { .updateJumpStepInput($0) }))
+                        .focused($jumpStepIsFocused)
+                        .onSubmit {
+                            guard let step = Int(store.state.jumpStepInput) else { return }
+                            jumpStepIsFocused = false
+                            store.send(.mutating(.jumpTo(step: step), animated: true, stepAnimation))
+                        }
+                        .frame(width: 75)
+                        .border(.gray)
                 }
-                .keyboardShortcut(.rightArrow, modifiers: .command)
-                .disabled(store.state.isAtEnd)
+                .padding(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .padding(10)
-            .font(.system(size: 50))
         }
         
         var body: some View {
@@ -104,9 +123,15 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
                     .progressViewStyle(.linear)
                     .offset(x: 0, y: -5) // hide extra padding
 
-                Text(store.state.snapshotCollection.title)
-                    .font(.title)
-                    .padding()
+                ZStack {
+                    Text(store.state.snapshotCollection.title)
+                        .font(.title)
+                        .padding()
+                    
+                    Text("Step: \(store.state.stepString)")
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
 
                 Divider()
                 
