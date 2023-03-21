@@ -18,6 +18,7 @@ struct SnapshotActionView: View {
     let action: String?
     let mode: Mode
     let nestedLevel: Int
+    var isUserAction: Bool
     
     enum ArrowHeightTag {}
     typealias ArrowHeightKey = MeasurementKey<CGFloat, ArrowHeightTag>
@@ -51,6 +52,7 @@ struct SnapshotActionView: View {
                 .font(.largeTitle.bold())
                 .foregroundColor(.secondary)
                 .background(nestedLevelText)
+                .background(userActionText)
                 .measureHeight(ArrowHeightKey.self) { arrowHeight = $0 }
         }
     }
@@ -61,6 +63,20 @@ struct SnapshotActionView: View {
             Text(String(nestedLevel))
                 .font(codingFont)
                 .offset(x: 0, y: arrowHeight ?? 0)
+        }
+    }
+    
+    @ViewBuilder
+    var userActionText: some View {
+        switch mode {
+        case .input:
+            if isUserAction {
+                Text("user")
+                    .font(codingFont)
+                    .offset(x: 0, y: -(arrowHeight ?? 0))
+            }
+        default:
+            EmptyView()
         }
     }
     
@@ -91,13 +107,25 @@ struct SnapshotActionView: View {
 
 struct SnapshotActionView_Previews: PreviewProvider {
     static let inputAction = """
-    .mutating(
-       .toggleNote(fret: 2, string: 5),
-       animated: false,
-       nil
+    .user(
+        .mutating(
+           .toggleNote(fret: 2, string: 5),
+           animated: false,
+           nil
+        )
     )
     """
-    
+
+    static let inputAction2 = """
+    .code(
+        .mutating(
+           .toggleNote(fret: 2, string: 5),
+           animated: false,
+           nil
+        )
+    )
+    """
+
     static let effect = """
     .actions([
        .mutating(
@@ -111,11 +139,11 @@ struct SnapshotActionView_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack(spacing: 50) {
-            SnapshotActionView(action: inputAction, mode: .input, nestedLevel: 2)
+            SnapshotActionView(action: inputAction, mode: .input, nestedLevel: 2, isUserAction: true)
                 .border(Color.black)
-            SnapshotActionView(action: effect, mode: .output, nestedLevel: 2)
+            SnapshotActionView(action: effect, mode: .output, nestedLevel: 2, isUserAction: false)
                 .border(Color.black)
-            SnapshotActionView(action: nil, mode: .stateChange, nestedLevel: 2)
+            SnapshotActionView(action: nil, mode: .stateChange, nestedLevel: 2, isUserAction: false)
                 .border(Color.black)
         }
     }

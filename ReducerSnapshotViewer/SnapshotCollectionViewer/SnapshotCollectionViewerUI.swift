@@ -54,7 +54,12 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
                 mode = .stateChange
                 action = nil
             }
-            return SnapshotActionView(action: action, mode: mode, nestedLevel: store.state.nestedLevel)
+            return SnapshotActionView(
+                action: action,
+                mode: mode,
+                nestedLevel: store.state.nestedLevel,
+                isUserAction: store.state.isUserAction
+            )
         }
         
         @State private var actionViewFixedWidth: CGFloat?
@@ -76,7 +81,7 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
                     Button(action: { store.send(.mutating(.moveToFirst, animated: true, stepAnimation)) }) {
                         Image(systemName: "arrow.left.to.line.circle")
                     }
-                    .keyboardShortcut(.leftArrow, modifiers: .command)
+                    .keyboardShortcut(.leftArrow, modifiers: .option)
                     .disabled(store.state.isAtStart)
                     
                     Button(action: { store.send(.mutating(.moveBackward, animated: true, stepAnimation)) }) {
@@ -84,17 +89,29 @@ extension SnapshotCollectionViewer: StoreUIWrapper {
                     }
                     .keyboardShortcut(.leftArrow, modifiers: [])
                     .disabled(store.state.isAtStart)
-                    
+                    .background(
+                        Button(action: { store.send(.mutating(.moveBackwardUser, animated: true, stepAnimation)) }) {
+                            Color.clear
+                        }
+                        .keyboardShortcut(.leftArrow, modifiers: .command)
+                    )
+
                     Button(action: { store.send(.mutating(.moveForward, animated: true, stepAnimation)) }) {
                         Image(systemName: "arrow.right.circle")
                     }
                     .keyboardShortcut(.rightArrow, modifiers: [])
                     .disabled(store.state.isAtEnd)
+                    .background(
+                        Button(action: { store.send(.mutating(.moveForwardUser, animated: true, stepAnimation)) }) {
+                            Color.clear
+                        }
+                        .keyboardShortcut(.rightArrow, modifiers: .command)
+                    )
                     
                     Button(action: { store.send(.mutating(.moveToLast, animated: true, stepAnimation)) }) {
                         Image(systemName: "arrow.right.to.line.circle")
                     }
-                    .keyboardShortcut(.rightArrow, modifiers: .command)
+                    .keyboardShortcut(.rightArrow, modifiers: .option)
                     .disabled(store.state.isAtEnd)
                 }
                 .padding(10)

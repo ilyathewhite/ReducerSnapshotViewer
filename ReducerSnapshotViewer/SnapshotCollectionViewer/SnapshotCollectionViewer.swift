@@ -21,6 +21,8 @@ enum SnapshotCollectionViewer: StoreNamespace {
         case moveBackward
         case moveToFirst
         case moveToLast
+        case moveForwardUser
+        case moveBackwardUser
         case updateJumpStepInput(String)
         case jumpTo(step: Int)
     }
@@ -49,6 +51,19 @@ enum SnapshotCollectionViewer: StoreNamespace {
                 return input.action
             default:
                 return nil
+            }
+        }
+        
+        var isUserAction: Bool {
+            isUserAction(at: index)
+        }
+        
+        func isUserAction(at index: Int) -> Bool {
+            switch snapshots[index] {
+            case .input(let input):
+                return input.action.starts(with: ".user(")
+            default:
+                return false
             }
         }
         
@@ -146,6 +161,32 @@ extension SnapshotCollectionViewer {
                     state.index = state.snapshots.count - 1
                     return .action(.effect(.updateSnapshot))
                     
+                case .moveForwardUser:
+                    var index = state.index + 1
+                    while index < state.snapshots.count, !state.isUserAction(at: index) {
+                        index += 1
+                    }
+                    if index < state.snapshots.count {
+                        state.index = index
+                        return .action(.effect(.updateSnapshot))
+                    }
+                    else {
+                        return .none
+                    }
+                    
+                case .moveBackwardUser:
+                    var index = state.index - 1
+                    while index >= 0, !state.isUserAction(at: index) {
+                        index -= 1
+                    }
+                    if index >= 0 {
+                        state.index = index
+                        return .action(.effect(.updateSnapshot))
+                    }
+                    else {
+                        return .none
+                    }
+
                 case .updateJumpStepInput(let str):
                     state.jumpStepInput = str
                     return .none
