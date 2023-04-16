@@ -6,7 +6,7 @@
       "location" : "https://github.com/ilyathewhite/CombineEx.git",
       "state" : {
         "branch" : "main",
-        "revision" : "e0085c0c426846085b5155fcf018e4d39316e521"
+        "revision" : "84bb52cab4eea9910be59dad923b18f3b12c3171"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/ilyathewhite/FoundationEx.git",
       "state" : {
         "branch" : "main",
-        "revision" : "3f7c5b40242370a367d2e3aa24c469ed14ad803b"
+        "revision" : "cc3820ebd9def7da8a3816df9012c583c0ddb34e"
       }
     },
     {
@@ -24,7 +24,7 @@
       "location" : "https://github.com/ilyathewhite/ReducerArchitecture.git",
       "state" : {
         "branch" : "master",
-        "revision" : "2efb5f2fc64ea6176d03ccd3bf5d47d4d7e0151c"
+        "revision" : "937971cb272d5982ec75961fe3d9a6488c3b95e4"
       }
     },
     {
@@ -42,7 +42,7 @@
       "location" : "https://github.com/ilyathewhite/SwiftUIEx.git",
       "state" : {
         "branch" : "main",
-        "revision" : "351f0183d2bcefa8ae9bfe4085a3941f6681e1f7"
+        "revision" : "44ebf15b746c85b8906791201327f7cefbcd34cd"
       }
     }
   ],

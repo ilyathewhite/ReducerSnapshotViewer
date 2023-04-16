@@ -39,9 +39,9 @@ struct StringView: View {
     }
 }
 
-extension StringDiff: StoreUIWrapper {
+extension StringDiff: StoreUINamespace {
     struct ContentView: StoreContentView {
-        typealias StoreWrapper = StringDiff
+        typealias Nsp = StringDiff
         @ObservedObject var store: Store
         
         init(store: Store) {

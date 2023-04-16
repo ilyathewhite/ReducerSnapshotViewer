@@ -14,9 +14,9 @@ import ReducerArchitecture
 enum FixedWidthTag {}
 typealias FixedWidthKey = FirstMeasurementKey<CGFloat, FixedWidthTag>
 
-extension SnapshotCollectionViewer: StoreUIWrapper {
+extension SnapshotCollectionViewer: StoreUINamespace {
     struct ContentView: StoreContentView {
-        typealias StoreWrapper = SnapshotCollectionViewer
+        typealias Nsp = SnapshotCollectionViewer
         @ObservedObject var store: Store
         
         init(store: Store) {

@@ -12,11 +12,11 @@ import SwiftUIEx
 import FoundationEx
 import ReducerArchitecture
 
-extension SnapshotState: StoreUIWrapper {
+extension SnapshotState: StoreUINamespace {
     struct ContentView: StoreContentView {
         @Environment(\.codingFont) var codingFont
         
-        typealias StoreWrapper = SnapshotState
+        typealias Nsp = SnapshotState
         @ObservedObject var store: Store
         
         @State private var fixedWidth: CGFloat?
