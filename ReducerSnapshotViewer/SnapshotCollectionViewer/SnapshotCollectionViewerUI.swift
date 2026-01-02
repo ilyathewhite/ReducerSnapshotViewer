@@ -19,7 +19,7 @@ extension SnapshotCollectionViewer: StoreUINamespace {
         typealias Nsp = SnapshotCollectionViewer
         @ObservedObject var store: Store
         
-        init(store: Store) {
+        init(_ store: Store) {
             self.store = store
         }
         
@@ -163,7 +163,7 @@ extension SnapshotCollectionViewer: StoreUINamespace {
                         
                         Divider()
                         
-                        SnapshotState.ContentView(store: snapshotStateStore)
+                        SnapshotState.ContentView(snapshotStateStore)
                             .onPreferenceChange(FixedWidthKey.self) {
                                 snapshotStateViewFixedWidth = $0
                             }
@@ -198,6 +198,6 @@ struct SnapshotPlayer_Previews: PreviewProvider {
     static let store = SnapshotCollectionViewer.store(snapshotCollection: snapshotCollection)
     
     static var previews: some View {
-        SnapshotCollectionViewer.ContentView(store: store)
+        SnapshotCollectionViewer.ContentView(store)
     }
 }

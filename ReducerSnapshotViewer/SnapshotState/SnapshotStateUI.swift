@@ -28,7 +28,7 @@ extension SnapshotState: StoreUINamespace {
         func stringDiffView() -> some View {
             NavigationStack {
                 stringDiffUI?.makeView()
-                    .navigationTitle(stringDiffUI?.store.state.title ?? "Diff")
+                    .navigationTitle(stringDiffUI?.viewModel.state.title ?? "Diff")
                     .toolbar {
                         ToolbarItemGroup(placement: .confirmationAction) {
                             Button("Done") {
@@ -39,7 +39,7 @@ extension SnapshotState: StoreUINamespace {
             }
         }
 
-        init(store: Store) {
+        init(_ store: Store) {
             self.store = store
         }
         
@@ -197,7 +197,7 @@ struct SnapshotState_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-            SnapshotState.ContentView(store: store)
+            SnapshotState.ContentView(store)
                 .frame(width: 900)
             Button("Update") {
                 store.send(.mutating(.update(state2, from: state), animated: true, .easeInOut(duration: 0.2)))

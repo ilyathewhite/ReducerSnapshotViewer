@@ -135,7 +135,7 @@ enum SnapshotCollectionViewer: StoreNamespace {
 extension SnapshotCollectionViewer {
     @MainActor
     static func store(snapshotCollection: ReducerSnapshotCollection) -> Store {
-        Store(identifier, .init(snapshotCollection: snapshotCollection), reducer: reducer(), env: nil)
+        Store(.init(snapshotCollection: snapshotCollection), reducer: reducer(), env: nil)
     }
     
     @MainActor

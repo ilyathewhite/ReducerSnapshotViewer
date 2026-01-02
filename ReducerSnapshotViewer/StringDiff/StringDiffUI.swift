@@ -44,7 +44,7 @@ extension StringDiff: StoreUINamespace {
         typealias Nsp = StringDiff
         @ObservedObject var store: Store
         
-        init(store: Store) {
+        init(_ store: Store) {
             self.store = store
         }
         
@@ -78,6 +78,6 @@ struct StringDiff_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        StringDiff.ContentView(store: store)
+        StringDiff.ContentView(store)
     }
 }

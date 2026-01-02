@@ -12,6 +12,6 @@ struct SnapshotCollectionDocumentView: View {
 
     var body: some View {
         let store = SnapshotCollectionViewer.store(snapshotCollection: document.snapshotCollection)
-        SnapshotCollectionViewer.ContentView(store: store)
+        SnapshotCollectionViewer.ContentView(store)
     }
 }

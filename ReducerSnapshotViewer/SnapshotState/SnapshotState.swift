@@ -88,7 +88,7 @@ enum SnapshotState: StoreNamespace {
 extension SnapshotState {
     @MainActor
     static func store(state: [CodePropertyValuePair]) -> Store {
-        Store(identifier, .init(rows: state.map { .init($0) }), reducer: reducer(), env: nil)
+        Store(.init(rows: state.map { .init($0) }), reducer: reducer(), env: nil)
     }
     
     @MainActor
