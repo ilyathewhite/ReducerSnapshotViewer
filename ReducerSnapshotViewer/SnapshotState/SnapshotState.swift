@@ -88,47 +88,45 @@ enum SnapshotState: StoreNamespace {
 extension SnapshotState {
     @MainActor
     static func store(state: [CodePropertyValuePair]) -> Store {
-        Store(.init(rows: state.map { .init($0) }), reducer: reducer(), env: nil)
+        Store(.init(rows: state.map { .init($0) }), env: nil)
     }
     
     @MainActor
-    static func reducer() -> Reducer {
-        .init(
-            run: { state, action in
-                switch action {
-                case .toggleExpanded(let property):
-                    guard let index = state.rows.firstIndex(where: { $0.property == property }) else {
-                        assertionFailure()
-                        return .none
-                    }
-                    state.rows[index].isExpanded.toggle()
-                    
-                case let .update(rows, prevRows):
-                    guard rows.count == state.rows.count else {
-                        state.rows = rows.map { .init($0) }
-                        return .none
-                    }
-                    for index in rows.indices {
-                        guard state.rows[index].property == rows[index].property else {
-                            assertionFailure()
-                            return .none
-                        }
-                        
-                        let oldValue = prevRows?[index].value
-                        let newValue = rows[index].value
-                        state.rows[index].value = .rowValue(old: oldValue ?? newValue, new: newValue)
-                    }
-                }
-                
-                return .none
-            },
-            effect: { env, state, action in
-                switch action {
-                case let .showDiff(propertyName, oldValue, newValue):
-                    env.showDiff(propertyName, oldValue, newValue)
-                }
+    static func reduce(_ state: inout StoreState, _ action: MutatingAction) -> Store.SyncEffect {
+        switch action {
+        case .toggleExpanded(let property):
+            guard let index = state.rows.firstIndex(where: { $0.property == property }) else {
+                assertionFailure()
                 return .none
             }
-        )
+            state.rows[index].isExpanded.toggle()
+            
+        case let .update(rows, prevRows):
+            guard rows.count == state.rows.count else {
+                state.rows = rows.map { .init($0) }
+                return .none
+            }
+            for index in rows.indices {
+                guard state.rows[index].property == rows[index].property else {
+                    assertionFailure()
+                    return .none
+                }
+                
+                let oldValue = prevRows?[index].value
+                let newValue = rows[index].value
+                state.rows[index].value = .rowValue(old: oldValue ?? newValue, new: newValue)
+            }
+        }
+        
+        return .none
+    }
+
+    @MainActor
+    static func runEffect(_ env: StoreEnvironment, _ state: StoreState, _ action: EffectAction) -> Store.Effect {
+        switch action {
+        case let .showDiff(propertyName, oldValue, newValue):
+            env.showDiff(propertyName, oldValue, newValue)
+        }
+        return .none
     }
 }

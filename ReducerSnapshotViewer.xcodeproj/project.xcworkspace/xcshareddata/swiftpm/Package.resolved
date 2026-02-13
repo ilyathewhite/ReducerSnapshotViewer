@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ilyathewhite/AsyncNavigation",
       "state" : {
-        "revision" : "1186588c1f11838d0db17a75367cc0d481ca92dc",
-        "version" : "1.0.10"
+        "revision" : "fa36cbac19aca23dba15808cc65a1138e2749b6b",
+        "version" : "1.0.11"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ilyathewhite/FoundationEx.git",
       "state" : {
-        "revision" : "1fc2a0e306c875ea411d60134826fc45346e6f31",
-        "version" : "1.0.11"
+        "revision" : "6d8a10270151d4477406a8c10291e1956b23c3d9",
+        "version" : "1.0.12"
       }
     },
     {
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ilyathewhite/ReducerArchitecture.git",
       "state" : {
-        "revision" : "f04774deb26ededbdfe085eaa124990a49f335bd",
-        "version" : "1.3.2"
+        "branch" : "main",
+        "revision" : "f2b3b1ea3f9da62605d521a15e83e077bef48cca"
       }
     },
     {
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ilyathewhite/SwiftUIEx.git",
       "state" : {
-        "revision" : "5c72c186d28a565d684d55cda40990f11a7c7a5f",
-        "version" : "1.0.6"
+        "branch" : "main",
+        "revision" : "94ff7f7e31180d716d528d07667e4cf2090dcbac"
       }
     }
   ],

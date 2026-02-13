@@ -676,16 +676,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ilyathewhite/ReducerArchitecture.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.2;
+				branch = main;
+				kind = branch;
 			};
 		};
 		09B2DD7F29BA1E9A00C831B2 /* XCRemoteSwiftPackageReference "SwiftUIEx" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ilyathewhite/SwiftUIEx.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.6;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

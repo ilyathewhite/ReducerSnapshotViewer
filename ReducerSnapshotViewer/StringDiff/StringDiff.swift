@@ -69,6 +69,6 @@ extension StringDiff {
             string2Caption: string2Caption,
             string2: string2
         )
-        return Store(state, reducer: reducer(), env: nil)
+        return Store(state, env: nil)
     }
 }

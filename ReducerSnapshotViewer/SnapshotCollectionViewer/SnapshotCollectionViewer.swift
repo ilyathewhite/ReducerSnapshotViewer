@@ -135,73 +135,71 @@ enum SnapshotCollectionViewer: StoreNamespace {
 extension SnapshotCollectionViewer {
     @MainActor
     static func store(snapshotCollection: ReducerSnapshotCollection) -> Store {
-        Store(.init(snapshotCollection: snapshotCollection), reducer: reducer(), env: nil)
+        Store(.init(snapshotCollection: snapshotCollection), env: nil)
     }
     
     @MainActor
-    static func reducer() -> Reducer {
-        .init(
-            run: { state, action in
-                switch action {
-                case .moveForward:
-                    guard !state.isAtEnd else { return .none }
-                    state.index += 1
-                    return .action(.effect(.updateSnapshot))
-                    
-                case .moveBackward:
-                    guard !state.isAtStart else { return .none }
-                    state.index -= 1
-                    return .action(.effect(.updateSnapshot))
+    static func reduce(_ state: inout StoreState, _ action: MutatingAction) -> Store.SyncEffect {
+        switch action {
+        case .moveForward:
+            guard !state.isAtEnd else { return .none }
+            state.index += 1
+            return .action(.effect(.updateSnapshot))
+            
+        case .moveBackward:
+            guard !state.isAtStart else { return .none }
+            state.index -= 1
+            return .action(.effect(.updateSnapshot))
 
-                case .moveToFirst:
-                    state.index = 0
-                    return .action(.effect(.updateSnapshot))
+        case .moveToFirst:
+            state.index = 0
+            return .action(.effect(.updateSnapshot))
 
-                case .moveToLast:
-                    state.index = state.snapshots.count - 1
-                    return .action(.effect(.updateSnapshot))
-                    
-                case .moveForwardUser:
-                    var index = state.index + 1
-                    while index < state.snapshots.count, !state.isUserAction(at: index) {
-                        index += 1
-                    }
-                    if index < state.snapshots.count {
-                        state.index = index
-                        return .action(.effect(.updateSnapshot))
-                    }
-                    else {
-                        return .none
-                    }
-                    
-                case .moveBackwardUser:
-                    var index = state.index - 1
-                    while index >= 0, !state.isUserAction(at: index) {
-                        index -= 1
-                    }
-                    if index >= 0 {
-                        state.index = index
-                        return .action(.effect(.updateSnapshot))
-                    }
-                    else {
-                        return .none
-                    }
-
-                case .updateJumpStepInput(let str):
-                    state.jumpStepInput = str
-                    return .none
-                    
-                case .jumpTo(let step):
-                    return state.jump(to: step) ? .action(.effect(.updateSnapshot)) : .none
-                }
-            },
-            effect: { env, state, action in
-                switch action {
-                case .updateSnapshot:
-                    env.updateSnapshot(state.snapshotState, state.prevSnapshotState)
-                    return .none
-                }
+        case .moveToLast:
+            state.index = state.snapshots.count - 1
+            return .action(.effect(.updateSnapshot))
+            
+        case .moveForwardUser:
+            var index = state.index + 1
+            while index < state.snapshots.count, !state.isUserAction(at: index) {
+                index += 1
             }
-        )
+            if index < state.snapshots.count {
+                state.index = index
+                return .action(.effect(.updateSnapshot))
+            }
+            else {
+                return .none
+            }
+            
+        case .moveBackwardUser:
+            var index = state.index - 1
+            while index >= 0, !state.isUserAction(at: index) {
+                index -= 1
+            }
+            if index >= 0 {
+                state.index = index
+                return .action(.effect(.updateSnapshot))
+            }
+            else {
+                return .none
+            }
+
+        case .updateJumpStepInput(let str):
+            state.jumpStepInput = str
+            return .none
+            
+        case .jumpTo(let step):
+            return state.jump(to: step) ? .action(.effect(.updateSnapshot)) : .none
+        }
+    }
+
+    @MainActor
+    static func runEffect(_ env: StoreEnvironment, _ state: StoreState, _ action: EffectAction) -> Store.Effect {
+        switch action {
+        case .updateSnapshot:
+            env.updateSnapshot(state.snapshotState, state.prevSnapshotState)
+            return .none
+        }
     }
 }
